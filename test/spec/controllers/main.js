@@ -19,7 +19,7 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  /*it('should attach a cancer history to the scope', function () {
-    expect(scope.history.length).toBe(3);
-  });*/
+  it('dummy test', function () {
+    expect(true).toBe(true);
+  });
 });

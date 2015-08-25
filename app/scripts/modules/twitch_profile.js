@@ -13,10 +13,10 @@ angular
     'ui.bootstrap',
     'ngStorage'
   ])
-  .factory('twitch_profiles', function($http, $localStorage, $sessionStorage) {
+  .factory('twitch_profiles', function($http, $localStorage) {
 
     // create the profiles collection on first load
-    $localStorage.profiles = $localStorage.profiles || {}
+    $localStorage.profiles = $localStorage.profiles || {};
 
     // load a channel using TwitchTV's API
     var _remote_load = function(channel) {
@@ -26,14 +26,14 @@ angular
 
         // the default avatar is null
         // TODO: default values for other nullable fields
-        if (!$localStorage.profiles[channel]['logo']) {
-          $localStorage.profiles[channel]['logo'] = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
+        if (!$localStorage.profiles[channel].logo) {
+          $localStorage.profiles[channel].logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
         }
         console.log('[jsonp] finished loading ' + channel);
       }, function(err) {
-        console.log('[jsonp] failed loading ' + channel);
+        console.log('[jsonp] failed loading ' + channel + ' ' + err);
 
-        delete profiles[channel];
+        delete $localStorage.profiles[channel];
       });
     };
 
@@ -59,19 +59,19 @@ angular
       replace: false,
       scope: {channel: '@'},
       templateUrl : 'views/twitch_profile.html',
-      link: function (scope, element, attrs) {
+      link: function(scope) {
 
         // ask the factory to load the profile and render the template when the profile is ready
         scope.$watch(function() {
-            return twitch_profiles.load(scope.channel)
+            return twitch_profiles.load(scope.channel);
           },
-          function(newValue, oldValue) {
+          function(newValue) {
             if (newValue) {
               //console.log('[directive] profile loaded ' + scope.channel);
               scope.profile = newValue;
             }
           }
-        )
+        );
       }
     };
   });

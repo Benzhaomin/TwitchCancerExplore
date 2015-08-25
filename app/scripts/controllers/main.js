@@ -16,15 +16,15 @@ angular.module('twitchCancer')
       var json = JSON.parse(message.data);
       //console.log(message);
 
-      if (json['topic'] === "twitchcancer.live") {
-        $scope.live = json['data'].map(function(value) {
+      if (json.topic === "twitchcancer.live") {
+        $scope.live = json.data.map(function(value) {
           // compute cancer per message
-          value['cpm'] = Math.round(value.cancer / value.messages * 100)/100;
+          value.cpm = Math.round(value.cancer / value.messages * 100)/100;
           return value;
         });
       }
-      else if (json['topic'] === "twitchcancer.leaderboards") {
-        $scope.leaderboards = json['data'];
+      else if (json.topic === "twitchcancer.leaderboards") {
+        $scope.leaderboards = json.data;
       }
     });
 
@@ -48,7 +48,7 @@ angular.module('twitchCancer')
       restrict: 'E',
       replace: false,
       scope: {data: '=chartData', field: '@chartField'},
-      link: function (scope, element, attrs) {
+      link: function (scope, element) {
         var chart = d3.select(element[0]).append("div").attr("class", "chart");
         var x = d3.scale.linear().range([0,99]);
 
@@ -62,7 +62,7 @@ angular.module('twitchCancer')
             chart.text('');
           }*/
 
-          if (scope.data.len == 0) {
+          if (scope.data.len === 0) {
             chart.text("No data");
             return;
           }
@@ -85,7 +85,7 @@ angular.module('twitchCancer')
             .attr("class", "enter");
 
           div.style("width", function(d) { return x(d[scope.field]) + "%"; })
-            .text(function(d) { return d.channel + ": " + d[scope.field]; })
+            .text(function(d) { return d.channel + ": " + d[scope.field]; });
         });
       }
     };
@@ -97,5 +97,5 @@ angular.module('twitchCancer')
       templateUrl : 'views/leaderboard.html',
       scope: {records: '=boardData', boardType: '@'}
     };
-   });
+   })
 ;
