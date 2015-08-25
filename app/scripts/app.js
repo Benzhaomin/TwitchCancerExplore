@@ -19,6 +19,8 @@ angular
     'ngTouch',
     'ngWebSocket',
     'ui.bootstrap',
+    'controllers.main',
+    'services.config',
     'twitchProfile'
   ])
   .config(function ($routeProvider) {

@@ -7,9 +7,9 @@
  * # MainCtrl
  * Controller of the main view
  */
-angular.module('twitchCancer')
-  .controller('MainCtrl', function ($scope, $http, $websocket) {
-    var socket = $websocket('ws://localhost:8080');
+angular.module('controllers.main', [])
+  .controller('MainCtrl', function ($scope, $http, $websocket, configuration) {
+    var socket = $websocket(configuration.api_socket);
     socket.reconnectIfNotNormalClose = true;
 
     socket.onMessage(function(message) {
