@@ -4,7 +4,12 @@ Angular website to display chat cancer data coming from [TwitchCancer](https://g
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+- `git clone git@github.com:Benzhaomin/TwitchCancerExplore.git`
+- `cd TwitchCancerExplore`
+- `npm install`
+- `bower install`
+- `grunt serve` to preview
+- `grunt` to build
 
 ## Testing
 
