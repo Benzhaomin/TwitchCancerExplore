@@ -1,6 +1,6 @@
 # TwitchCancerExplore
 
-Angular website to display chat cancer data coming from TwitchCancer.
+Angular website to display chat cancer data coming from [TwitchCancer](https://github.com/Benzhaomin/TwitchCancer).
 
 ## Build & development
 
