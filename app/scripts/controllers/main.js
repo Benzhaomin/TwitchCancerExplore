@@ -22,6 +22,11 @@ angular.module('controllers.main', ['directives.bubbleschart', 'directives.leade
       $scope.leaderboards = json;
     });
 
+    $scope.$on("$destroy", function() {
+      api.unsubscribe("twitchcancer.live");
+      api.unsubscribe("twitchcancer.leaderboards");
+    });
+
     $scope.cancerPopover = {
       templateUrl: 'cancer-info-popover.html',
     };
