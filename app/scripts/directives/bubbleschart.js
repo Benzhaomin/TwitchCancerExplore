@@ -14,7 +14,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
       replace: false,
       scope: {data: '=chartData', field: '@chartField'},
       link: function (scope, element) {
-        var diameter = 530,
+        var diameter = 900,
           format = d3.format(",d"),
           color = d3.scale.category20c();
 
@@ -48,7 +48,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // only update bubbles every so often
           var now = new Date();
-          if (now.getTime() - last_update.getTime() < 2000) {
+          if (now.getTime() - last_update.getTime() < 4000) {
             return;
           }
           else {
@@ -58,7 +58,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // sort descending
           var data = scope.data.sort(function(a, b) {
             return b[scope.field] - a[scope.field];
-          }).slice(0,15);
+          });
 
           // load profile images
           data = data.map(function(value, index) {
@@ -111,7 +111,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // node update, with transition
           node
-            .transition().duration(1000)
+            .transition().duration(2000)
             .style("left", function(d) {
               return Math.round(d.x-d.r)+"px";
             })
