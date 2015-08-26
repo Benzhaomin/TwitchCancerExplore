@@ -69,7 +69,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               value.url = profile.url;
             }
 
+            // add a rank-specific class
             value.class = "rank-"+(index+1);
+
+            // remove the IRC #
+            value.channel = value.channel.replace("#", "")
 
             return value;
           });
