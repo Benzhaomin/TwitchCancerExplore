@@ -29,9 +29,9 @@ angular
         if (!$localStorage.profiles[channel].logo) {
           $localStorage.profiles[channel].logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
         }
-        console.log('[jsonp] finished loading ' + channel);
+        //console.log('[jsonp] finished loading ' + channel);
       }, function(err) {
-        console.log('[jsonp] failed loading ' + channel + ' ' + err);
+        console.err('[jsonp] failed loading ' + channel + ' ' + err);
 
         delete $localStorage.profiles[channel];
       });
@@ -57,7 +57,10 @@ angular
     return {
       restrict: 'E',
       replace: false,
-      scope: {channel: '@'},
+      scope: {
+        channel: '@',
+        title: '@'
+      },
       templateUrl : 'views/twitch_profile.html',
       link: function(scope) {
 

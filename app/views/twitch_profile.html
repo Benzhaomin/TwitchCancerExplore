@@ -1,4 +1,9 @@
 
-<a href="{{ profile.url }}" title="{{ profile.url }}" target="_blank">
+<a ng-href="#/channel/{{ channel.replace('#', '') }}" title="{{ profile.url }}" target="_blank">
+  <h4>
+    {{ title }}<br>
+    <small>{{ (profile ? profile.display_name : channel.replace("#", "")) }}</small>
+  </h4>
+
   <img ng-src="{{ profile.logo }}"/>
 </a>

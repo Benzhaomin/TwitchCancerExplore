@@ -59,7 +59,7 @@ leaderboard {
 
         small {
           color: white;
-          font-weight: bold;
+          font-size: 0.6em;
         }
       }
     }
@@ -70,7 +70,12 @@ leaderboard {
       transition: transform 0.1s ease-in;
 
       h4 {
-        font-size: 2.6em;
+        font-size: 2.2em;
+
+        small {
+          font-weight: bold;
+          font-size: 0.6em;
+        }
       }
 
       &:hover {
@@ -85,7 +90,16 @@ leaderboard {
       border-bottom: 5px solid #7e7c7d;
 
       h4 {
-        font-size: 1.4em;
+        font-size: 1.8em;
+
+        small {
+          font-weight: bold;
+          font-size: 0.6em;
+        }
+      }
+
+      &:hover {
+        transform: skew(-10deg, 10deg);
       }
     }
 
@@ -95,7 +109,16 @@ leaderboard {
       border-bottom: 5px solid #d96e38;
 
       h4 {
-        font-size: 1.3em;
+        font-size: 1.4em;
+
+        small {
+          font-weight: bold;
+          font-size: 0.6em;
+        }
+      }
+
+      &:hover {
+        transform: skew(5deg, -5deg);
       }
     }
   }
