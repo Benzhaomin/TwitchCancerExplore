@@ -1,40 +1,38 @@
-<h1 title="since a minute ago">Live Charts</h1>
+<h1>Live <small>happening right now on Twitch</small></h1>
 
-<tabset justified="true">
+<div class="row">
 
-  <tab heading="Cancer points">
-      <bars-chart chart-data="live" chart-field="cancer"></bars-chart>
-  </tab>
+  <div class="col-lg-6 col-sm-12">
+    <h3 style="text-align: center">Cancer per minute</h3>
+    <bubbles-chart chart-data="live" chart-field="cancer"></bubbles-chart>
+  </div>
 
-  <tab heading="Message count">
-      <bars-chart chart-data="live" chart-field="messages"></bars-chart>
-  </tab>
+  <div class="col-lg-6 col-sm-12">
+    <h3 style="text-align: center">Message per minute</h3>
+    <bubbles-chart chart-data="live" chart-field="messages"></bubbles-chart>
+  </div>
 
-  <tab heading="Points per message">
-      <bars-chart chart-data="live" chart-field="cpm"></bars-chart>
-  </tab>
-
-</tabset>
+</div>
 
 <h1>Cancer King <small>win the most cancer points</small></h1>
 
 <div class="row">
   <div class="top10 total">
-    <h3>in total</h3>
+    <h3>total</h3>
     <leaderboard board-data="leaderboards.cancer.total" board-type="total"></leaderboard>
   </div>
 </div>
 
 <div class="row">
   <div class="top10 average">
-    <h3>on average</h3>
+    <h3>average</h3>
     <leaderboard board-data="leaderboards.cancer.average" board-type="average"></leaderboard>
   </div>
 </div>
 
 <div class="row">
   <div class="top10 minute">
-    <h3>in a minute</h3>
+    <h3>best minute</h3>
     <leaderboard board-data="leaderboards.cancer.minute" board-type="minute"></leaderboard>
   </div>
 </div>
@@ -43,7 +41,7 @@
 
 <div class="row">
   <div class="top10 total">
-    <h3>in total</h3>
+    <h3>total</h3>
     <leaderboard board-data="leaderboards.cpm.total" board-type="total"></leaderboard>
   </div>
 </div>
@@ -57,7 +55,7 @@
 
 <div class="row">
   <div class="top10 minute">
-    <h3>in a minute</h3>
+    <h3>best minute</h3>
     <leaderboard board-data="leaderboards.cpm.minute" board-type="minute"></leaderboard>
   </div>
 </div>
@@ -66,22 +64,31 @@
 
 <div class="row">
   <div class="top10 total">
-    <h3>in total</h3>
+    <h3>total</h3>
     <leaderboard board-data="leaderboards.messages.total" board-type="total"></leaderboard>
   </div>
 </div>
 
 <div class="row">
   <div class="top10 average">
-    <h3>on average</h3>
+    <h3>average</h3>
     <leaderboard board-data="leaderboards.messages.average" board-type="average"></leaderboard>
   </div>
 </div>
 
 <div class="row">
   <div class="top10 minute">
-    <h3>in a minute</h3>
+    <h3>best minute</h3>
     <leaderboard board-data="leaderboards.messages.minute" board-type="minute"></leaderboard>
+  </div>
+</div>
+
+<h1 id="#about">About</h1>
+<div class="row">
+  <div class="col-lg-12">
+    <p>Live stats and leaderboards built by monitoring the top 100 Twitch channels chatrooms.</p>
+    <p>Cancer points are awarded based on emote count, emote to text ratio, message length (extra short or extra long), and <a href="https://github.com/Benzhaomin/TwitchCancer/blob/master/twitchcancer/symptom/symptoms.py" target="_blank"> more</a>.</p>
+    <p>The TwitchCancer suite of tools is released under the GNU General Public License, allowing anybody to copy, distribute and/or modify them. The source code for this site can be found at <a href="https://github.com/Benzhaomin/TwitchCancerExpose" target="_blank">TwitchCancerExpose.git</a> while the code for server-side stuff is at <a href="https://github.com/Benzhaomin/TwitchCancer" target="_blank">TwitchCancer.git</a>.
   </div>
 </div>
 

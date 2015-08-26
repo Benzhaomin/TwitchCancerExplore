@@ -1,5 +1,6 @@
 .chart {
   padding: 3px;
+  margin-left: 50px;
 
   div {
     width: 0;
@@ -14,4 +15,68 @@
     color: white;
     box-shadow: 2px 2px 2px #666;
   }
+}
+
+.bubble {
+  position: relative;
+  width: 512px;
+  height: 512px;
+  margin: 0 auto;
+
+  .node {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+
+    .logo {
+      border-bottom: 4px solid rgba(0,0,0,0.5);
+    }
+
+    h4 {
+    }
+
+    &:hover {
+      overflow: visible;
+    }
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+    &:hover img {
+      box-shadow: 0px -2px 4px rgba(127,123,124,0.8);
+      color: white;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    }
+    h4 {
+      box-sizing: border-box;
+      width: 100%;
+      position: absolute;
+      bottom: 30%;
+      margin: 0;
+
+      color: white;
+      font-weight: bold;
+      line-height: 0.8em;
+      text-align: center;
+      text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
+
+      span {
+        font-size: 1.8em;
+      }
+      small {
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+  .node.rank-1 .logo {
+    border-bottom: 12px solid #ffd741;
+  }
+  .node.rank-2 .logo {
+    border-bottom: 10px solid #7e7c7d;
+  }
+  .node.rank-3 .logo {
+    border-bottom: 8px solid #d96e38;
+  }
+
 }
