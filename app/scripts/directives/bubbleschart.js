@@ -95,6 +95,9 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           var nodeEnterH4 = nodeEnter.append("div")
             .attr("class", "logo")
+            .style("background", function(d) {
+              return "no-repeat left top "+color(d.channel);
+            })
             .append("h4");
 
           nodeEnterH4
@@ -109,13 +112,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // node update, with transition
           node
             .transition().duration(1000)
-            .attr("style", function(d) {
-              var style = "";
-
-              style += "left:"+ Math.round(d.x-d.r)+"px;";
-              style += "top:"+ Math.round(d.y-d.r)+"px;";
-
-              return style;
+            .style("left", function(d) {
+              return Math.round(d.x-d.r)+"px";
+            })
+            .style("top", function(d) {
+              return Math.round(d.y-d.r)+"px";
             });
 
           // node update, without transition
@@ -137,38 +138,49 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               }
             });
 
+          // update the streamer's logo
+          node.select(".logo")
+            .style('background-image', function(d) {
+                if (typeof d.logo === "undefined") {
+                  return "";
+                }
+                else {
+                  return 'url("'+d.logo+'")';
+                }
+            })
+            .style('background-size', 'cover');
+
           // update the size of the streamer logo
           node.select(".logo")
             .transition()
-            .attr("style", function(d) {
-              var style = "";
-
-              style += "border-radius:"+Math.round(d.r)+"px;";
-              style += "width:"+ 2*Math.round(d.r)+"px;";
-              style += "height:"+ 2*Math.round(d.r)+"px;";
-
-              if (typeof d.logo === "undefined") {
-                style += "background:"+color(d.channel)+";";
-              }
-              else {
-                style += " background:"+"url('"+d.logo+"') no-repeat left top "+color(d.channel)+"; background-size: cover;";
-              }
-              return style;
+            .style("border-radius", function(d) {
+              return Math.round(d.r)+"px"
+            })
+            .style("width", function(d) {
+              return 2*Math.round(d.r)+"px"
+            })
+            .style("height", function(d) {
+              return 2*Math.round(d.r)+"px"
             });
 
-          // update the main value
+          // update the main value, without transition
           node.select("h4").select("span")
-            .text(function(d) { return format(d[scope.field]); })
-            .transition()
-            .attr("style", function(d) {
-              return "font-size: "+d.r/30+"em";
+            .text(function(d) { return format(d[scope.field]); });
+
+          // update the main value, with transition
+          node.select("h4").select("span")
+            .style("font-size", function(d) {
+              return +d.r/30+"em";
             });
 
+          // update the streamer's name, without transition
           node.select("h4").select("small")
-            .text(function(d) { return ("display_name" in d ? d.display_name : d.channel); })
-            .transition()
-            .attr("style", function(d) {
-              return "font-size: "+d.r/80+"em";
+            .text(function(d) { return ("display_name" in d ? d.display_name : d.channel); });
+
+          // update the streamer's name, with transition
+          node.select("h4").select("small")
+            .style("font-size", function(d) {
+              return +d.r/80+"em";
             });
 
           // node exit
