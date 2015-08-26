@@ -1,0 +1,109 @@
+div.profile {
+  padding-top: 40px;
+
+  div.statistic {
+    big {
+      font-size: 26px;
+    }
+  }
+
+  a:hover img {
+    box-shadow: 0px -2px 4px rgba(127,123,124,0.8);
+    color: white;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  }
+}
+
+h1.category {
+  border-bottom: 1px solid #ccc;
+}
+
+div.statistic {
+  position: relative;
+  margin: 20px auto;
+
+  &:hover big {
+    color: red;
+  }
+
+  big {
+    color: #555;
+    font-size: 44px;
+    font-weight: 700;
+    text-shadow: 1px 1px rgba(145, 145, 145, 0.4);
+  }
+  .badge {
+    clear: right;
+  }
+
+  .badge {
+    vertical-align: super;
+    margin-left: 4px;
+  }
+
+  .badge.rank-1 {
+    font-size: 44px;
+    vertical-align: baseline;
+    margin-left: 8px;
+    text-shadow: 0px 0px 5px black;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+
+    transition: transform 0.1s ease-in;
+
+    animation: pulse 0.2s linear 0s infinite alternate;
+
+    @keyframes pulse {
+      0% { margin-left: 8px; }
+      100% { margin-left: 12px; }
+    }
+
+    &:hover {
+      transform: rotate(20deg);
+    }
+  }
+
+  .badge.rank-2 {
+    font-size: 38px;
+    margin-left: 8px;
+    color: #7e7c7d;
+    box-shadow: 0px 0px 5px black;
+    background: white;
+  }
+
+  .badge.rank-3 {
+    font-size: 32px;
+    margin-left: 6px;
+    text-shadow: 0px 0px 5px black;
+    background: #d96e38;
+  }
+
+  .badge.rank-4 {
+    font-size: 28px;
+    background: #008800;
+  }
+
+  .badge.rank-5 {
+    font-size: 28px;
+    background: #007700;
+  }
+
+  .badge.rank-6 {
+    font-size: 24px;
+    background: #006600;
+  }
+
+  .badge.rank-7 {
+    font-size: 22px;
+    background: #005500;
+  }
+
+  .badge.rank-8 {
+    font-size: 18px;
+    background: #004400;
+  }
+
+  .badge.rank-9 {
+    font-size: 16px;
+    background: #003300;
+  }
+}
