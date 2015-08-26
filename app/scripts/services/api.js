@@ -37,8 +37,11 @@ angular.module('api.websocket', [])
       var json = JSON.parse(message.data);
 
       if (json.topic in subscriptions) {
-        //console.log("calling " + subscriptions[json.topic] + " for " + json.topic);
+        //console.log("calling callback for " + json.topic);
         subscriptions[json.topic](json.data);
+      }
+      else {
+        console.error("got data we don't want: " + json.topic);
       }
     });
 
@@ -62,7 +65,7 @@ angular.module('api.websocket', [])
       //console.log("unsubscribed from "+topic);
       delete subscriptions[topic];
 
-      socket.send('{"unsubscribe": '+topic+'}');
+      socket.send('{"unsubscribe": "'+topic+'"}');
     };
 
     return {
