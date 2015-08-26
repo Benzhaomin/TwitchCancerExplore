@@ -7,40 +7,19 @@
  * # MainCtrl
  * Controller of the main view
  */
-angular.module('controllers.main', ['directives.bubbleschart', 'directives.leaderboard'])
-  .controller('MainCtrl', function ($scope, $websocket, configuration) {
-    var socket = $websocket(configuration.api_socket);
-    socket.reconnectIfNotNormalClose = true;
+angular.module('controllers.main', ['directives.bubbleschart', 'directives.leaderboard', 'api.websocket'])
+  .controller('MainCtrl', function($scope, api) {
 
-    socket.onMessage(function(message) {
-      var json = JSON.parse(message.data);
-      //console.log(message);
-
-      if (json.topic === "twitchcancer.live") {
-        $scope.live = json.data.map(function(value) {
-          // compute cancer per message
-          value.cpm = Math.round(value.cancer / value.messages * 100)/100;
-          return value;
-        });
-      }
-      else if (json.topic === "twitchcancer.leaderboards") {
-        $scope.leaderboards = json.data;
-      }
+    api.subscribe("twitchcancer.live", function(json) {
+      $scope.live = json.map(function(value) {
+        // compute cancer per message
+        value.cpm = Math.round(value.cancer / value.messages * 100)/100;
+        return value;
+      });
     });
 
-    socket.onOpen(function() {
-      //console.log('socket opened');
-
-      socket.send('{"subscribe": "twitchcancer.live"}');
-      socket.send('{"subscribe": "twitchcancer.leaderboards"}');
-    });
-
-    socket.onClose(function() {
-      console.warn('socket closed');
-    });
-
-    socket.onError(function(error) {
-      console.error(error);
+    api.subscribe("twitchcancer.leaderboards", function(json) {
+      $scope.leaderboards = json;
     });
 
     $scope.cancerPopover = {
