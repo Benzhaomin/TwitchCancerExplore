@@ -11,11 +11,7 @@ angular.module('controllers.main', ['directives.bubbleschart', 'api.websocket'])
   .controller('MainCtrl', function($scope, api) {
 
     api.subscribe("twitchcancer.live", function(json) {
-      $scope.live = json.map(function(value) {
-        // compute cancer per message
-        value.cpm = Math.round(value.cancer / value.messages * 100)/100;
-        return value;
-      });
+      $scope.live = json;
     });
 
     $scope.$on("$destroy", function() {
