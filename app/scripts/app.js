@@ -20,6 +20,7 @@ angular
     'ngWebSocket',
     'ui.bootstrap',
     'controllers.main',
+    'controllers.channel',
     'services.config'
   ])
   .config(function ($routeProvider) {
@@ -28,6 +29,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/channel/:channelName', {
+        templateUrl: 'views/channel.html',
+        controller: 'ChannelCtrl',
+        controllerAs: 'channel'
       })
       .otherwise({
         redirectTo: '/'
