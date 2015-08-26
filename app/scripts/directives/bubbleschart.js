@@ -90,7 +90,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // node enter
           var nodeEnter = node.enter()
             .append("a")
-            .attr("target", "_blank")
+            .attr("title", "open channel profile (in this tab)")
             .attr("class", function(d) { return "node "+d.class; });
 
           var nodeEnterH4 = nodeEnter.append("div")
@@ -123,19 +123,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           node
             .attr("class", function(d) { return "node "+d.class; })
             .attr("href", function(d) {
-              if (typeof d.url === "undefined") {
-                return "";
-              }
-              else {
-               return d.url;
-              }
-            }).attr("title", function(d) {
-              if (typeof d.url === "undefined") {
-                return "";
-              }
-              else {
-               return d.url;
-              }
+              return "/#/channel/"+d.channel;
             });
 
           // update the streamer's logo
