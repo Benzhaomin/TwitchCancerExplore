@@ -13,43 +13,43 @@ angular
     'ui.bootstrap',
     'ngStorage'
   ])
-  .factory('twitch_profiles', function($http, $sessionStorage) {
+  .factory('twitch_profiles', function($http, $localStorage) {
 
     // create the profiles collection on first load
-    $sessionStorage.profiles = $sessionStorage.profiles || {};
+    $localStorage.profiles = $localStorage.profiles || {};
 
     // load a channel using TwitchTV's API
     var _remote_load = function(channel) {
 
       $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel.replace('#', '')+'?callback=JSON_CALLBACK').then(function(response) {
-        $sessionStorage.profiles[channel] = response.data;
+        $localStorage.profiles[channel] = response.data;
 
         // the default avatar is null
         // TODO: default values for other nullable fields
-        if (!$sessionStorage.profiles[channel].logo) {
-          $sessionStorage.profiles[channel].logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
+        if (!$localStorage.profiles[channel].logo) {
+          $localStorage.profiles[channel].logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
         }
-        //console.log('[jsonp] finished loading ' + channel);
+        console.log('[jsonp] finished loading ' + channel);
       }, function(err) {
-        console.err('[jsonp] failed loading ' + channel + ' ' + err);
+        console.log('[jsonp] failed loading ' + channel + ' ' + err);
 
-        delete $sessionStorage.profiles[channel];
+        delete $localStorage.profiles[channel];
       });
     };
 
     return {
       'load': function(channel) {
         // new channel or empty local storage, time to load
-        if (!(channel in $sessionStorage.profiles)) {
+        if (!(channel in $localStorage.profiles)) {
           // placeholder to return to watcher
-          $sessionStorage.profiles[channel] = null;
+          $localStorage.profiles[channel] = null;
 
           // (async) load the channel's profile
           _remote_load(channel);
         }
 
         // might be null, better $watch it
-        return $sessionStorage.profiles[channel];
+        return $localStorage.profiles[channel];
       }
     };
   })
