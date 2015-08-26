@@ -7,10 +7,17 @@
  * # ChannelCtrl
  * Controller of the channel view
  */
-angular.module('controllers.channel', [])
-  .controller('ChannelCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
+angular.module('controllers.channel', ['api.websocket'])
+  .controller('ChannelCtrl', function($scope, $routeParams, api) {
       $scope.channelName = $routeParams.channelName;
+
+      api.subscribe("twitchcancer.channel.#"+$scope.channelName, function(json) {
+        $scope.stats = json;
+      });
+
+      $scope.$on("$destroy", function() {
+        api.unsubscribe("twitchcancer.channel.#"+$scope.channelName);
+      });
     }
-  ])
+  )
 ;

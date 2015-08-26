@@ -1,1 +1,25 @@
 <h1>{{ channelName }}</h1>
+
+GLOBAL NOTE we record the top 100 only<br>
+<br>
+# Time
+<br>
+Recording since: {{ stats.total.date }}<br>
+Total time recorded: {{ stats.average.duration }} minutes<br>
+<br>
+# Messages
+<br>
+Total: {{ stats.total.messages.value | number:0 }} rank {{ stats.total.messages.rank }}<br>
+Highest: {{ stats.minute.messages.value | number:0 }} rank {{ stats.minute.messages.rank }} {{ stats.minute.messages.date }}<br>
+Average: {{ stats.average.messages.value | number:0 }} rank {{ stats.average.average.rank }}<br>
+<br>
+# Cancer
+<br>
+Total: {{ stats.total.cancer.value | number:0 }} rank {{ stats.total.cancer.rank }}<br>
+Highest: {{ stats.minute.cancer.value | number:0 }} rank {{ stats.minute.cancer.rank }} {{ stats.minute.cancer.date }}<br>
+Average: {{ stats.average.cancer.value | number:0 }} rank {{ stats.average.cancer.rank }}<br>
+<br>
+# Cancer per message
+<br>
+Total: {{ stats.total.cpm.value | number:0 }} rank {{ stats.total.cpm.rank }}<br>
+Highest: {{ stats.minute.cpm.value | number:0 }} rank {{ stats.minute.cpm.rank }} {{ stats.minute.cpm.date }}<br>
