@@ -20,8 +20,7 @@ angular
     'ngWebSocket',
     'ui.bootstrap',
     'controllers.main',
-    'services.config',
-    'twitchProfile'
+    'services.config'
   ])
   .config(function ($routeProvider) {
     $routeProvider
