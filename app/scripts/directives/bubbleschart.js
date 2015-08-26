@@ -74,7 +74,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             value.class = "rank-"+(index+1);
 
             // remove the IRC #
-            value.channel = value.channel.replace("#", "")
+            value.channel = value.channel.replace("#", "");
 
             return value;
           });
@@ -142,13 +142,13 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           node.select(".logo")
             .transition()
             .style("border-radius", function(d) {
-              return Math.round(d.r)+"px"
+              return Math.round(d.r)+"px";
             })
             .style("width", function(d) {
-              return 2*Math.round(d.r)+"px"
+              return 2*Math.round(d.r)+"px";
             })
             .style("height", function(d) {
-              return 2*Math.round(d.r)+"px"
+              return 2*Math.round(d.r)+"px";
             });
 
           // update the main value, without transition

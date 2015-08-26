@@ -52,14 +52,14 @@ angular.module('api.websocket', [])
       subscriptions[topic] = callback;
 
       // don't send unless we know we're getting somewhere
-      if (socket.readyState == 1) {
+      if (socket.readyState === 1) {
         socket.send('{"subscribe": "'+topic+'"}');
         //console.log("subscribed to "+topic);
       }
     };
 
-    var unsubscribe = function(topic, callback) {
-      if (!topic in subscriptions) {
+    var unsubscribe = function(topic) {
+      if (!(topic in subscriptions)) {
         return;
       }
       //console.log("unsubscribed from "+topic);
@@ -71,6 +71,6 @@ angular.module('api.websocket', [])
     return {
       'subscribe': subscribe,
       'unsubscribe': unsubscribe
-    }
+    };
   })
 ;

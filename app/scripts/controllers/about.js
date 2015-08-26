@@ -8,7 +8,7 @@
  * Controller of the about view
  */
 angular.module('controllers.about', ['api.websocket'])
-  .controller('AboutCtrl', function($scope, api) {
+  .controller('AboutCtrl', function() {
     // TODO: add stats
   })
 ;

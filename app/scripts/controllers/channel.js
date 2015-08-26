@@ -37,6 +37,6 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 't
         rank: '='
       },
       template: '<span class="badge rank-{{rank}}">{{rank | ordinal}}</span>'
-    }
+    };
   })
 ;
