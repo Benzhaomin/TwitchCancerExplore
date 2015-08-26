@@ -23,6 +23,7 @@ angular
     'controllers.about',
     'controllers.leaderboards',
     'controllers.channel',
+    'controllers.header',
     'services.config'
   ])
   .config(function ($routeProvider) {
