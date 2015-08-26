@@ -58,7 +58,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // sort descending
           var data = scope.data.sort(function(a, b) {
             return b[scope.field] - a[scope.field];
-          }).slice(0,12);
+          }).slice(0,15);
 
           // load profile images
           data = data.map(function(value, index) {
@@ -67,6 +67,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             if (profile) {
               value.logo = profile.logo;
               value.url = profile.url;
+              value.display_name = profile.display_name;
             }
 
             // add a rank-specific class
@@ -103,8 +104,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             .append("br");
 
           nodeEnterH4
-            .append("small")
-            .text(function(d) { return d.channel; });
+            .append("small");
 
           // node update, with transition
           node
@@ -158,7 +158,18 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // update the main value
           node.select("h4").select("span")
-            .text(function(d) { return format(d[scope.field]); });
+            .text(function(d) { return format(d[scope.field]); })
+            .transition()
+            .attr("style", function(d) {
+              return "font-size: "+d.r/30+"em";
+            });
+
+          node.select("h4").select("small")
+            .text(function(d) { return ("display_name" in d ? d.display_name : d.channel); })
+            .transition()
+            .attr("style", function(d) {
+              return "font-size: "+d.r/80+"em";
+            });
 
           // node exit
           node.exit().remove();
