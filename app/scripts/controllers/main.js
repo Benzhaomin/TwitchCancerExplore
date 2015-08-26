@@ -42,5 +42,9 @@ angular.module('controllers.main', ['directives.bubbleschart', 'directives.leade
     socket.onError(function(error) {
       console.error(error);
     });
+
+    $scope.cancerPopover = {
+      templateUrl: 'cancer-info-popover.html',
+    };
   })
 ;

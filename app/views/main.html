@@ -2,84 +2,105 @@
 
 <div class="row">
 
+  <script type="text/ng-template" id="cancer-info-popover.html">
+    <p>
+      <strong>Cancer points</strong> are awarded for each message sent in a chat depending on:
+      <ul>
+        <li>message length</li>
+        <li>caps count</li>
+        <li>caps to lowercase ratio</li>
+        <li>emotes count</li>
+        <li>emotes to text ratio</li>
+        <li>copy-pasta level</li>
+      </ul>
+     </p>
+  </script>
+
   <div class="col-lg-6 col-sm-12">
-    <h3 style="text-align: center">Cancer per minute</h3>
+    <h3 style="text-align: center">Cancer per minute
+      <small class="no-variant">
+        <span popover-template="cancerPopover.templateUrl" popover-placement="bottom" class="glyphicon glyphicon-info-sign"></span>
+      </small>
+    </h3>
     <bubbles-chart chart-data="live" chart-field="cancer"></bubbles-chart>
   </div>
 
   <div class="col-lg-6 col-sm-12">
-    <h3 style="text-align: center">Message per minute</h3>
+    <h3 style="text-align: center">Messages per minute</h3>
     <bubbles-chart chart-data="live" chart-field="messages"></bubbles-chart>
   </div>
 
+  <div class="col-lg-6 col-sm-12" collapse>
+  </div>
 </div>
 
 <h1>Cancer King <small>win the most cancer points</small></h1>
 
 <div class="row">
   <div class="top10 total">
-    <h3>total</h3>
+    <h3 tooltip="since August 25st 2015">total</h3>
     <leaderboard board-data="leaderboards.cancer.total" board-type="total"></leaderboard>
   </div>
 </div>
 
 <div class="row">
-  <div class="top10 average">
-    <h3>average</h3>
-    <leaderboard board-data="leaderboards.cancer.average" board-type="average"></leaderboard>
+  <div class="top10 minute">
+    <h3 tooltip="in a single minute">highest</h3>
+    <leaderboard board-data="leaderboards.cancer.minute" board-type="minute"></leaderboard>
   </div>
 </div>
 
 <div class="row">
-  <div class="top10 minute">
-    <h3>best minute</h3>
-    <leaderboard board-data="leaderboards.cancer.minute" board-type="minute"></leaderboard>
+  <div class="top10 average">
+    <h3 tooltip="since August 25st 2015">average</h3>
+    <leaderboard board-data="leaderboards.cancer.average" board-type="average"></leaderboard>
   </div>
 </div>
+
 
 <h1>Cancer Master <small>get the most cancer per message</small></h1>
 
 <div class="row">
   <div class="top10 total">
-    <h3>total</h3>
+    <h3 tooltip="since August 25st 2015">total</h3>
     <leaderboard board-data="leaderboards.cpm.total" board-type="total"></leaderboard>
+  </div>
+</div>
+
+<div class="row">
+  <div class="top10 minute">
+    <h3 tooltip="in a single minute">highest</h3>
+    <leaderboard board-data="leaderboards.cpm.minute" board-type="minute"></leaderboard>
   </div>
 </div>
 
 <!--<div class="row">
   <div class="top10 average">
-    <h3>on average</h3>
+    <h3 tooltip="since August 25st 2015">average</h3>
     <leaderboard board-data="leaderboards.cpm.average" board-type="average"></leaderboard>
   </div>
 </div>-->
-
-<div class="row">
-  <div class="top10 minute">
-    <h3>best minute</h3>
-    <leaderboard board-data="leaderboards.cpm.minute" board-type="minute"></leaderboard>
-  </div>
-</div>
 
 <h1>Spam Master <small>get the highest number of messages</small></h1>
 
 <div class="row">
   <div class="top10 total">
-    <h3>total</h3>
+    <h3 tooltip="since August 25st 2015">total</h3>
     <leaderboard board-data="leaderboards.messages.total" board-type="total"></leaderboard>
   </div>
 </div>
 
 <div class="row">
-  <div class="top10 average">
-    <h3>average</h3>
-    <leaderboard board-data="leaderboards.messages.average" board-type="average"></leaderboard>
+  <div class="top10 minute">
+    <h3 tooltip="in a single minute">highest</h3>
+    <leaderboard board-data="leaderboards.messages.minute" board-type="minute"></leaderboard>
   </div>
 </div>
 
 <div class="row">
-  <div class="top10 minute">
-    <h3>best minute</h3>
-    <leaderboard board-data="leaderboards.messages.minute" board-type="minute"></leaderboard>
+  <div class="top10 average">
+    <h3 tooltip="since August 25st 2015">average</h3>
+    <leaderboard board-data="leaderboards.messages.average" board-type="average"></leaderboard>
   </div>
 </div>
 
