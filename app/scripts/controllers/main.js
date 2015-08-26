@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the main view
  */
-angular.module('controllers.main', ['directives.bubbleschart', 'directives.leaderboard', 'api.websocket'])
+angular.module('controllers.main', ['directives.bubbleschart', 'api.websocket'])
   .controller('MainCtrl', function($scope, api) {
 
     api.subscribe("twitchcancer.live", function(json) {
@@ -18,13 +18,8 @@ angular.module('controllers.main', ['directives.bubbleschart', 'directives.leade
       });
     });
 
-    api.subscribe("twitchcancer.leaderboards", function(json) {
-      $scope.leaderboards = json;
-    });
-
     $scope.$on("$destroy", function() {
       api.unsubscribe("twitchcancer.live");
-      api.unsubscribe("twitchcancer.leaderboards");
     });
 
     $scope.cancerPopover = {

@@ -26,13 +26,41 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/" title="Twitch Chat Cancer Monitor">TwitchCancer</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li ui-sref-active="active"><a ui-sref="home" href="#/">Home</a></li>
+              <li ui-sref-active="active"><a ui-sref="leaderboards" ng-href="#/leaderboards">Leaderboards</a></li>
+              <!--<li><a ng-href="#/channels">Channels</a></li>-->
+              <li ui-sref-active="active"><a ui-sref="home" ng-href="#/about">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
     <div ng-view=""></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p>Source code: <a href="https://github.com/Benzhaomin/TwitchCancer" target="_blank">server-side</a> and <a href="https://github.com/Benzhaomin/TwitchCancerExpose" target="_blank">website</a></p>
+        <p>Source code at <a href="https://github.com/Benzhaomin/TwitchCancerExplore" target="_blank">https://github.com/Benzhaomin/TwitchCancerExplore</a></p>
       </div>
     </div>
 
@@ -66,7 +94,9 @@
     <script src="scripts/directives/leaderboard.js"></script>
     <script src="scripts/modules/twitch_profile.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/channel.js"></script>
+    <script src="scripts/controllers/leaderboards.js"></script>
     <!-- endbuild -->
 </body>
 </html>

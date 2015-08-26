@@ -1,6 +1,7 @@
 
 div.top10 {
   position: relative;
+  min-height: 180px;
 
   h3 {
     transform: rotate(-90deg);
@@ -26,6 +27,7 @@ leaderboard {
       position: relative;
       display: inline-block;
       width: 85px;
+      min-height: 85px;
       margin-left: 5px;
       vertical-align: bottom;
       margin-bottom: 5px;
@@ -37,6 +39,7 @@ leaderboard {
       img {
         width: 100%;
         max-width: 100%;
+        min-height: 85px;
       }
       &:hover img {
         box-shadow: 0px -2px 4px rgba(127,123,124,0.8);
@@ -54,7 +57,7 @@ leaderboard {
 
         color: white;
         font-weight: bold;
-        line-height: 0.8em;
+        line-height: 0.6em;
         text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
 
         small {

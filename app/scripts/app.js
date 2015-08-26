@@ -20,6 +20,8 @@ angular
     'ngWebSocket',
     'ui.bootstrap',
     'controllers.main',
+    'controllers.about',
+    'controllers.leaderboards',
     'controllers.channel',
     'services.config'
   ])
@@ -29,6 +31,16 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
+      })
+      .when('/leaderboards', {
+        templateUrl: 'views/leaderboards.html',
+        controller: 'LeaderboardsCtrl',
+        controllerAs: 'leaderboards'
       })
       .when('/channel/:channelName', {
         templateUrl: 'views/channel.html',
