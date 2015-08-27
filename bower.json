@@ -6,7 +6,7 @@
     "angular-animate": "^1.3.0",
     "angular-bootstrap": "~0.13.3",
     "angular-cookies": "^1.3.0",
-    "angular-filter-count-to": "~0.0.3",
+    "angular-filter-count-to": "Benzhaomin/angular-filter-count-to#v0.0.5",
     "angular-messages": "^1.3.0",
     "angular-resource": "^1.3.0",
     "angular-route": "^1.3.0",
