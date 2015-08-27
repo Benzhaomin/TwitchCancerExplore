@@ -21,7 +21,7 @@ angular
     // load a channel using TwitchTV's API
     var _remote_load = function(channel) {
 
-      $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel.replace('#', '')+'?callback=JSON_CALLBACK').then(function(response) {
+      $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel+'?callback=JSON_CALLBACK').then(function(response) {
         $localStorage.profiles[channel] = response.data;
 
         // the default avatar is null
@@ -38,6 +38,9 @@ angular
 
     return {
       'load': function(channel) {
+        // make sure whatever the caller asked ends-up using the same record
+        channel = channel.replace('#', '');
+
         // new channel or empty local storage, time to load
         if (!(channel in $localStorage.profiles)) {
           // placeholder to return to watcher
