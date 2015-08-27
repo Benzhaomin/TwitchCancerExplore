@@ -20,7 +20,7 @@ angular
 
     // return our local thumbnail URL
     var _thumbnail_url = function(logo_url) {
-      if (configuration.thumbnailer) {
+      if (configuration.thumbnailer !== "") {
         return configuration.thumbnailer + urlencode(logo_url);
       }
       else {
