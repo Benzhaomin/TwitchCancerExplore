@@ -48,6 +48,8 @@ h1 {
   margin: 0 0 20px 0;
   padding: 0 0 5px 0;
   border-bottom: 2px solid #e5e5e5;
+  position: relative;
+  z-index: 1;
 
   &:hover b {
     color: #027d08;

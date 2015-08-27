@@ -31,7 +31,31 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         var chart = d3.select(element[0]).append("div").attr("class", "chart")
           .attr("class", "bubble");
 
-        scope.$watch('data', function() {
+        // add a [top20 - top100] switch
+        var showAll = false;
+
+        chart
+          .append("button")
+          .attr("class", "btn btn-danger pull-right")
+          .style("outline", "0 none")
+          .attr("title", "Show all streams, stronk cpu pls")
+          .attr("data-toggle", "button")
+          .text("Man mode")
+          .on("click", function() {
+            showAll = !showAll;
+
+            /*if (showAll) {
+              d3.select(this).attr("class", "btn on")
+            }
+            else {
+              d3.select(this).attr("class", "btn off")
+            }*/
+
+            updateChart(true);
+          });
+
+        // will update all bubbles based on scope.data
+        var updateChart = function(noDelay) {
 
           if (typeof scope.data === 'undefined') {
             //chart.text("Loading...");
@@ -48,7 +72,13 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // only update bubbles every so often
           var now = new Date();
-          if (now.getTime() - last_update.getTime() < 4000) {
+
+          if (noDelay === false) {
+            // update as soon as we get data when on top 10 mode
+            noDelay = !showAll;
+          }
+
+          if (!noDelay && now.getTime() - last_update.getTime() < 4000) {
             return;
           }
           else {
@@ -59,6 +89,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           var data = scope.data.sort(function(a, b) {
             return b[scope.field] - a[scope.field];
           });
+
+          // only display the top 20
+          if (!showAll) {
+            data = data.slice(0, 20);
+          }
 
           // load profile images
           data = data.map(function(value, index) {
@@ -111,7 +146,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // node update, with transition
           node
-            .transition().duration(2000)
+            .transition().duration((showAll ? 2000 : 990))
             .style("left", function(d) {
               return Math.round(d.x-d.r)+"px";
             })
@@ -173,7 +208,9 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // node exit
           node.exit().remove();
-        });
+        };
+
+        scope.$watch('data', function() { updateChart(false) });
       }
     };
   })
