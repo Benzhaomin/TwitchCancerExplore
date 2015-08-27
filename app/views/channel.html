@@ -12,7 +12,7 @@
       <h1 class="no-variant">{{ profile.display_name }}</h1>
 
       <div class="statistic">
-        <big count-to="{{ stats.total.duration.value / 3600 }}" value="0" duration="1"></big>
+        <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1"></big>
         hours recorded since
         {{ stats.total.since | date }}
         <span rank-badge rank="stats.total.duration.rank"></span>
