@@ -12,7 +12,7 @@
       <h1 class="no-variant">{{ profile.display_name }}</h1>
 
       <div class="statistic">
-        <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1"></big>
+        <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
         hours recorded since
         {{ stats.total.since | date }}
         <span rank-badge rank="stats.total.duration.rank"></span>
@@ -89,22 +89,22 @@
       <h1 class="category">Cancer Master</h1>
 
       <div class="statistic">
-        <big count-to="{{ stats.total.cpm.value }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ stats.total.cpm.value }}" value="0" duration="1" filter="number" params="2"></big>
         <span rank-badge rank="stats.total.cpm.rank"></span>
         <br>cancer points per message in total
       </div>
 
       <div class="statistic">
-        <big count-to="{{ stats.minute.cpm.value }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ stats.minute.cpm.value }}" value="0" duration="1" filter="number" params="2">></big>
         <span rank-badge rank="stats.minute.cpm.rank"></span>
         <br>burst record at {{ stats.minute.cpm.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cpm.date | date : 'shortDate' }}
       </div>
 
-      <div class="statistic">
-        <big count-to="{{ stats.average.cpm.value }}" value="0" duration="1" filter="number"></big>
+      <!--<div class="statistic">
+        <big count-to="{{ stats.average.cpm.value }}" value="0" duration="1" filter="number" params="2">></big>
         <span rank-badge rank="stats.average.cpm.rank"></span>
         <br>cancer points per message on average
-      </div>
+      </div>-->
 
     </div>
 

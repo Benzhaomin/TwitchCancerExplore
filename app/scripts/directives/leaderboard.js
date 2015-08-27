@@ -14,7 +14,7 @@ angular.module('directives.leaderboard', ['twitchProfile'])
       restrict: 'E',
       replace: false,
       templateUrl : 'views/leaderboard.html',
-      scope: {records: '=boardData', boardType: '@'}
+      scope: {records: '=boardData', decimals: '@'}
     };
   })
 ;

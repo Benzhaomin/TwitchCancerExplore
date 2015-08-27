@@ -1,5 +1,5 @@
 <ul>
   <li ng-repeat='record in records track by record.channel'>
-    <twitchprofile channel="{{ record.channel }}" title="{{ record.value | number : 0 }}"></twitchprofile>
+    <twitchprofile channel="{{ record.channel }}" title="{{ record.value | number : decimals }}"></twitchprofile>
   </li>
 </ul>
