@@ -83,7 +83,8 @@ angular
       replace: false,
       scope: {
         channel: '@',
-        title: '@'
+        title: '@',
+        rank: '@'
       },
       templateUrl : 'views/twitch_profile.html',
       link: function(scope) {

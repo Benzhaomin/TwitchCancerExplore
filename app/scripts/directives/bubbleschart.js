@@ -100,10 +100,10 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             var profile = twitchProfiles.load(value.channel);
 
             // this might be default data but that's fine
-            value.logo = profile.logo;
+            value.logo = (index < 5 ? profile.logo : profile.thumbnail);
             value.display_name = profile.display_name;
 
-            // add a rank-specific class
+            // add a rank-specific class TODO: apply specific CSS to smaller bubbles to save on perf (no rgba etc)
             value.class = "rank-"+(index+1);
 
             // remove the IRC #

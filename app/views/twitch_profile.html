@@ -1,9 +1,9 @@
 
-<a ng-href="#/channel/{{ channel.replace('#', '') }}" title="open channel profile (in this tab)">
+<a ng-href="#/channel/{{ channel.replace('#', '') }}" title="open {{ profile.display_name }}'s profile (in this tab)">
   <h4>
     {{ title }}<br>
-    <small>{{ (profile ? profile.display_name : channel.replace("#", "")) }}</small>
+    <small>{{ profile.display_name }}</small>
   </h4>
 
-  <img ng-src="{{ profile.logo }}"/>
+  <img ng-src="{{ (rank > 3 ? profile.thumbnail : profile.logo) }}"/>
 </a>

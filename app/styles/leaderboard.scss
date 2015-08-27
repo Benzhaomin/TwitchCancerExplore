@@ -27,7 +27,7 @@ leaderboard {
       position: relative;
       display: inline-block;
       width: 85px;
-      min-height: 85px;
+      height: 85px;
       margin-left: 5px;
       vertical-align: bottom;
       margin-bottom: 5px;
@@ -37,9 +37,9 @@ leaderboard {
         overflow: visible;
       }
       img {
-        width: 100%;
         max-width: 100%;
-        min-height: 85px;
+        width: 85px;
+        height: 85px;
       }
       &:hover img {
         box-shadow: 0px -2px 4px rgba(127,123,124,0.8);
@@ -69,8 +69,14 @@ leaderboard {
 
     li:nth-child(1) {
       width: 180px;
+      height: 180px;
       border-bottom: 8px solid #ffd741;
       transition: transform 0.1s ease-in;
+
+      img {
+        width: 180px;
+        height: 180px;
+      }
 
       h4 {
         font-size: 2.2em;
@@ -87,10 +93,15 @@ leaderboard {
     }
 
     li:nth-child(2) {
-      display: inline-block;
+      width: 130px;
+      height: 130px;
       margin-left: 15px;
-      width: 120px;
       border-bottom: 5px solid #7e7c7d;
+
+      img {
+        width: 130px;
+        height: 130px;
+      }
 
       h4 {
         font-size: 1.8em;
@@ -109,7 +120,13 @@ leaderboard {
     li:nth-child(3) {
       margin-left: 10px;
       width: 100px;
+      height: 100px;
       border-bottom: 5px solid #d96e38;
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
 
       h4 {
         font-size: 1.4em;
