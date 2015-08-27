@@ -5,3 +5,4 @@
 /bower_components
 /config/environments/*.json
 /app/scripts/services/config.js
+/thumbnailer/generated/*
