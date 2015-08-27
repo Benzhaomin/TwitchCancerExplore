@@ -460,7 +460,31 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.app %>/scripts/services/'
         }]
       }
+    },
+
+    // Remove unused Bootstrap CSS
+    uncss: {
+      dist: {
+        options: {
+          // we get in right after compass
+          stylesheets : ['../.tmp/styles/bootstrap.css'],
+
+          // list of bootstrap classes used dynamically, we want to keep them
+          ignore: [/\.tooltip.*/, /\.popover.*/, /\.badge.*/, /\.btn.*/, '.pull-right']
+        },
+        files : {
+            '.tmp/styles/bootstrap.css': [
+                '<%= yeoman.app %>/index.html',
+                '<%= yeoman.app %>/views/about.html',
+                '<%= yeoman.app %>/views/channel.html',
+                '<%= yeoman.app %>/views/leaderboard.html',
+                '<%= yeoman.app %>/views/leaderboards.html',
+                '<%= yeoman.app %>/views/twitch_profile.html'
+            ]
+        }
+      }
     }
+
   });
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -499,6 +523,7 @@ module.exports = function (grunt) {
     'replace:production',
     'useminPrepare',
     'concurrent:dist',
+    'uncss:dist',
     'autoprefixer',
     'ngtemplates',
     'concat',
