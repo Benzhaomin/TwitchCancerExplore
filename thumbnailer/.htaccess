@@ -1,0 +1,6 @@
+# To rewrite the 404 image correctly you will have to set:
+# AllowEncodedSlashes NoDecode
+# in your vHost config
+
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9%\-_\.]+.(jpg|jpeg|png))$ index.php?src=$1

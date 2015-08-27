@@ -18,17 +18,18 @@ angular
     // create the profiles collection on first load
     $localStorage.profiles = $localStorage.profiles || {};
 
+    var _base_picture_url =  'http://static-cdn.jtvnw.net/jtv_user_pictures/';
+    var _default_logo = _base_picture_url +'xarth/404_user_300x300.png';
+
     // return our local thumbnail URL
     var _thumbnail_url = function(logo_url) {
       if (configuration.thumbnailer !== "") {
-        return configuration.thumbnailer + encodeURIComponent(logo_url);
+        return configuration.thumbnailer + encodeURIComponent(logo_url.replace(_base_picture_url, ""));
       }
       else {
         return logo_url;
       }
     }
-
-    var _default_logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
 
     // load a channel using TwitchTV's API
     var _remote_load = function(channel) {

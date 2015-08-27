@@ -9,19 +9,21 @@
 // configuration constants
 define("GENERATED_DIR", dirname(__FILE__).DIRECTORY_SEPARATOR.'generated/'); // where thumbs are cached
 define("THUMBNAIL_SIZE", 85); // size of thumbnails (square)
-define("PROFILE_REGEXP", '`^http://static\-cdn\.jtvnw\.net/jtv_user_pictures/(?:[\w]+\-profile_image-[\d\w]+\-|xarth/404_user_)300x300\.(?:jpeg|png)$`'); // Twitch profile image URL pattern
+define("PROFILE_BASEURL", 'http://static-cdn.jtvnw.net/jtv_user_pictures/');
+define("IMAGE_NAME_REGEXP", '`^(?:[\w]+\-profile_image\-[\d\w]+\-|xarth/404_user_)300x300\.(?:jpeg|png)$`'); // Twitch profile image URL pattern https://regex101.com/r/pJ2fC4/2
 
 // "variable" constants, just to be a bit safer and make sure we won't screw anything up later
-define("REMOTE_URL", (isset($_GET['src']) ? $_GET['src'] : "Use ?src=URL")); // get the URL of the REMOTE_URL profile image
-define("REMOTE_IS_PNG", preg_match("/png$/", REMOTE_URL)); // Twitch stores png and jpg images
-define("LOCAL_PATH", GENERATED_DIR.md5(REMOTE_URL).(REMOTE_IS_PNG ? ".png" : ".jpg")); // build a local file path
+define("REMOTE_IMAGE", (isset($_GET['src']) ? $_GET['src'] : 'xarth/404_user_300x300.png'));
+define("REMOTE_IS_PNG", preg_match("/png$/", REMOTE_IMAGE)); // Twitch stores png and jpg images
+define("LOCAL_PATH", GENERATED_DIR.md5(REMOTE_IMAGE).(REMOTE_IS_PNG ? ".png" : ".jpg")); // build a local file path
+define("REMOTE_URL", PROFILE_BASEURL.REMOTE_IMAGE); // get the URL of the REMOTE_URL profile image
 
 // generate missing thumbnails
 if (!file_exists(LOCAL_PATH)) {
 
   // make sure a Twitch profile URL was requested
-  if (!preg_match(PROFILE_REGEXP, REMOTE_URL)) {
-    die("Invalid URL: ".REMOTE_URL);
+  if (!preg_match(IMAGE_NAME_REGEXP, REMOTE_IMAGE)) {
+    die("Invalid URL: ".REMOTE_IMAGE);
   }
 
   // load the big image from Twitch
