@@ -10,13 +10,7 @@
  */
 angular
   .module('twitchCancer', [
-    'ngAnimate',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch',
     'ngWebSocket',
     'ui.bootstrap',
     'controllers.main',
