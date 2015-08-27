@@ -42,13 +42,16 @@ angular
         // new channel or empty local storage, time to load
         if (!(channel in $localStorage.profiles)) {
           // placeholder to return to watcher
-          $localStorage.profiles[channel] = null;
+          $localStorage.profiles[channel] = {
+            "display_name": channel.replace('#', ''),
+            'logo': 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png'
+          };
 
           // (async) load the channel's profile
           _remote_load(channel);
         }
 
-        // might be null, better $watch it
+        // might be incomplete, better $watch it
         return $localStorage.profiles[channel];
       }
     };
