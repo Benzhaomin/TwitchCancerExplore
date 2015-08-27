@@ -29,7 +29,7 @@ angular
       else {
         return logo_url;
       }
-    }
+    };
 
     // load a channel using TwitchTV's API
     var _remote_load = function(channel) {

@@ -208,7 +208,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           node.exit().remove();
         };
 
-        scope.$watch('data', function() { updateChart(false) });
+        scope.$watch('data', function() { updateChart(false); });
       }
     };
   })
