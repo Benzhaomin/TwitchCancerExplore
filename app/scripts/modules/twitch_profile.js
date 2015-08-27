@@ -21,7 +21,7 @@ angular
     // return our local thumbnail URL
     var _thumbnail_url = function(logo_url) {
       if (configuration.thumbnailer !== "") {
-        return configuration.thumbnailer + urlencode(logo_url);
+        return configuration.thumbnailer + encodeURIComponent(logo_url);
       }
       else {
         return logo_url;
