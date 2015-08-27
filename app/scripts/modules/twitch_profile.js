@@ -13,7 +13,7 @@ angular
     'ui.bootstrap',
     'ngStorage'
   ])
-  .factory('twitch_profiles', function($http, $localStorage) {
+  .factory('twitchProfiles', function($http, $localStorage) {
 
     // create the profiles collection on first load
     $localStorage.profiles = $localStorage.profiles || {};
@@ -25,7 +25,6 @@ angular
         $localStorage.profiles[channel] = response.data;
 
         // the default avatar is null
-        // TODO: default values for other nullable fields
         if (!$localStorage.profiles[channel].logo) {
           $localStorage.profiles[channel].logo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png';
         }
@@ -56,7 +55,7 @@ angular
       }
     };
   })
-  .directive('twitchprofile', function($http, twitch_profiles) {
+  .directive('twitchprofile', function($http, twitchProfiles) {
     return {
       restrict: 'E',
       replace: false,
@@ -69,7 +68,7 @@ angular
 
         // ask the factory to load the profile and render the template when the profile is ready
         scope.$watch(function() {
-            return twitch_profiles.load(scope.channel);
+            return twitchProfiles.load(scope.channel);
           },
           function(newValue) {
             if (newValue) {

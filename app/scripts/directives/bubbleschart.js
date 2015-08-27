@@ -8,7 +8,7 @@
  * Directive used to render data as a bubbles chart
  */
 angular.module('directives.bubbleschart', ['twitchProfile'])
-  .directive('bubblesChart', function(twitch_profiles) {
+  .directive('bubblesChart', function(twitchProfiles) {
     return {
       restrict: 'E',
       replace: false,
@@ -97,13 +97,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // load profile images
           data = data.map(function(value, index) {
-            var profile = twitch_profiles.load(value.channel);
+            var profile = twitchProfiles.load(value.channel);
 
-            if (profile) {
-              value.logo = profile.logo;
-              value.url = profile.url;
-              value.display_name = profile.display_name;
-            }
+            // this might be default data but that's fine
+            value.logo = profile.logo;
+            value.display_name = profile.display_name;
 
             // add a rank-specific class
             value.class = "rank-"+(index+1);

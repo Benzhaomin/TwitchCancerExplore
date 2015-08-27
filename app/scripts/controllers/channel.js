@@ -8,11 +8,11 @@
  * Controller of the channel view
  */
 angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'twitchProfile'])
-  .controller('ChannelCtrl', function($scope, $routeParams, api, twitch_profiles) {
+  .controller('ChannelCtrl', function($scope, $routeParams, api, twitchProfiles) {
     $scope.channelName = $routeParams.channelName;
 
     $scope.$watch(function() {
-        return twitch_profiles.load($scope.channelName);
+        return twitchProfiles.load($scope.channelName);
       },
       function(newValue) {
         if (newValue) {
