@@ -203,6 +203,8 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // set the mouseover every cycle because d3 caches its result
           node.select("a").on('mouseover', function(d) {
+
+            // show the current value
             d3.select(this).append("text")
               .attr("class", "value")
               .attr("fill", "white")
@@ -210,16 +212,17 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               .attr("dy", "1em")
               .attr("font-size", "2em")
               .text(function() {
-                  return d.value;
+                  return d[scope.field];
               });
 
+            // this one never changes but we only have a single mouseover callback
             d3.select(this).append("text")
               .attr("class", "channel")
               .attr("fill", "white")
               .attr("text-anchor", "middle")
               .attr("dy", "4.2em")
               .attr("font-size", "0.6em")
-              .text(function(d) {
+              .text(function() {
                 return d.display_name;
               });
           })
