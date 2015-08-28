@@ -35,18 +35,19 @@ angular
     var _remote_load = function(channel) {
 
       $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel+'?callback=JSON_CALLBACK').then(function(response) {
-        $localStorage.profiles[channel] = response.data;
 
-        // the default avatar is null
-        if (!$localStorage.profiles[channel].logo) {
-          $localStorage.profiles[channel].logo = _default_logo;
+        // only store the minimum we need
+        $localStorage.profiles[channel] = {
+          'url': response.data.url,
+          'logo': response.data.logo || _default_logo,
+          'display_name': response.data.display_name,
+          'followers': response.data.followers,
+          'game': response.data.game,
+          'cachedAt': Date() //(TODO: expire)
         }
 
         // store the URL to our local thumbnail
         $localStorage.profiles[channel].thumbnail = _thumbnail_url($localStorage.profiles[channel].logo);
-
-        // remember when we cached the profile (TODO: make them expire)
-        $localStorage.profiles[channel].cachedAt = Date();
 
         //console.log('[jsonp] finished loading ' + channel);
       }, function(err) {
