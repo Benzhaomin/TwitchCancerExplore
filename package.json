@@ -1,6 +1,14 @@
 {
   "name": "twitchcancer",
-  "private": true,
+  "version": "0.2.0",
+  "homepage": "http://cancer.wainei.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Benzhaomin/TwitchCancerExplore.git"
+  },
+  "author": "Benjamin Maisonnas <ben@wainei.net>",
+  "license": "GPL3",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "generator-env-config": "0.0.2",
     "grunt": "^0.4.5",
