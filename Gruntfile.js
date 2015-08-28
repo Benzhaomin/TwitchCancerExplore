@@ -126,7 +126,8 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          '!<%= yeoman.app %>/scripts/vendor/**'
         ]
       },
       test: {
@@ -394,11 +395,6 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -466,14 +462,13 @@ module.exports = function (grunt) {
     uncss: {
       dist: {
         options: {
-          // we get in right after compass
-          stylesheets : ['../.tmp/styles/bootstrap.css'],
+          stylesheets : ['styles/vendor/bootstrap-custom.css'],
 
           // list of bootstrap classes used dynamically, we want to keep them
           ignore: [/\.tooltip.*/, /\.popover.*/, /\.badge.*/, /\.btn.*/, '.pull-right']
         },
         files : {
-            '.tmp/styles/bootstrap.css': [
+            '.tmp/styles/vendor/bootstrap-custom.css': [
                 '<%= yeoman.app %>/index.html',
                 '<%= yeoman.app %>/views/about.html',
                 '<%= yeoman.app %>/views/channel.html',
@@ -523,11 +518,11 @@ module.exports = function (grunt) {
     'replace:production',
     'useminPrepare',
     'concurrent:dist',
-    'uncss:dist',
     'autoprefixer',
     'ngtemplates',
     'concat',
     'ngAnnotate',
+    'uncss:dist',
     'copy:dist',
     'cssmin',
     'uglify',

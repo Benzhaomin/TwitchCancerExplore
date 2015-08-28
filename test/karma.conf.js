@@ -22,14 +22,11 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
-      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-filter-count-to/dist/angular-filter-count-to.min.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-websocket/angular-websocket.min.js',
       'bower_components/angularjs-ordinal-filter/ordinal-browser.js',
-      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
       'bower_components/d3/d3.js',
       'bower_components/ngstorage/ngStorage.js',
       'bower_components/angular-mocks/angular-mocks.js',

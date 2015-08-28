@@ -1,7 +1,6 @@
 
 body {
   padding: 0;
-  background-color: lemon;
 }
 
 section {
@@ -31,6 +30,11 @@ h1, h2, h3 {
   .no-variant {
     font-variant: normal;
   }
+}
+
+/* accessibility comes second it seems */
+a {
+  outline: none !important;
 }
 
 h1 {

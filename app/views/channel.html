@@ -13,11 +13,9 @@
 
       <div class="statistic">
         <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
-        hours recorded since
+        hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b> since
         {{ stats.total.since | date }}
         <span rank-badge rank="stats.total.duration.rank"></span>
-
-        <span class="glyphicon glyphicon-info-sign" tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time"></span>
       </div>
 
       <div class="statistic">
