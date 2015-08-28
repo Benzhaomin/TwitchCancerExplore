@@ -45,6 +45,9 @@ angular
         // store the URL to our local thumbnail
         $localStorage.profiles[channel].thumbnail = _thumbnail_url($localStorage.profiles[channel].logo);
 
+        // remember when we cached the profile (TODO: make them expire)
+        $localStorage.profiles[channel].cachedAt = Date();
+
         //console.log('[jsonp] finished loading ' + channel);
       }, function(err) {
         console.err('[jsonp] failed loading ' + channel + ' ' + err);
