@@ -18,68 +18,37 @@
 }
 
 .bubble {
-  position: relative;
-  width: 960px;
+  width: 1000px;
+  padding-left: 50px;
   height: 900px;
-  margin: -65px auto;
+  margin: -65px auto -35px;
 
   button {
     margin-top: 65px;
   }
-  .node {
-    position: absolute;
-    display: block;
-    overflow: hidden;
 
-    .logo {
-      border-bottom: 4px solid rgba(0,0,0,0.5);
+  g {
+
+    &.rank-1 rect {
+      fill: #ffd741;
+    }
+    &.rank-2 rect {
+      fill: #7e7c7d;
+    }
+    &.rank-3 rect {
+      fill: #d96e38;
     }
 
-    h4 {
+    a:hover {
+      text-decoration: none;
     }
 
-    &:hover {
-      overflow: visible;
-    }
-    img {
-      width: 100%;
-      max-width: 100%;
-    }
-    &:hover img {
-      box-shadow: 0px -2px 4px rgba(127,123,124,0.8);
-      color: white;
-      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    }
-    h4 {
-      box-sizing: border-box;
-      width: 100%;
-      position: absolute;
-      bottom: 30%;
-      margin: 0;
-
-      color: white;
+    text {
       font-weight: bold;
-      line-height: 0.8em;
-      text-align: center;
+      font-variant: small-caps;
       text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
-
-      span {
-        font-size: 1.8em;
-      }
-      small {
-        color: white;
-        font-weight: bold;
-      }
+      pointer-events: none;
     }
-  }
-  .node.rank-1 .logo {
-    border-bottom: 12px solid #ffd741;
-  }
-  .node.rank-2 .logo {
-    border-bottom: 10px solid #7e7c7d;
-  }
-  .node.rank-3 .logo {
-    border-bottom: 8px solid #d96e38;
   }
 
 }

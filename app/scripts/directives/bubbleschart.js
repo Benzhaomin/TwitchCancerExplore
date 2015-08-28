@@ -14,27 +14,26 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
       replace: false,
       scope: {data: '=chartData', field: '@chartField'},
       link: function (scope, element) {
-        var diameter = 900,
-          format = d3.format(",d"),
-          color = d3.scale.category20c();
+        var diameter = 950;
 
         var bubble = d3.layout.pack()
           .sort(null)
           .size([diameter, diameter])
-          .padding(1.5)
+          .padding(0)
           .value(function(d) {
             return d[scope.field];
           });
 
+        // never updated yet
         var last_update = new Date(1970);
 
-        var chart = d3.select(element[0]).append("div").attr("class", "chart")
-          .attr("class", "bubble");
+        // store loaded profiles to save on back and forth with the twitchProfile service
+        var profileCache = {};
 
-        // add a [top20 - top100] switch
+        // add a [top15 - top100] button
         var showAll = false;
 
-        chart
+        d3.select(element[0])
           .append("button")
           .attr("class", "btn btn-danger pull-right")
           .style("outline", "0 none")
@@ -44,15 +43,31 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           .on("click", function() {
             showAll = !showAll;
 
-            /*if (showAll) {
-              d3.select(this).attr("class", "btn on")
-            }
-            else {
-              d3.select(this).attr("class", "btn off")
-            }*/
-
             updateChart(true);
           });
+
+        // add the main svg element
+        var chart = d3.select(element[0]).append("svg")
+          .attr("class", "bubble");
+
+        // add svg definitions
+        var defs = chart.append("defs");
+
+        // main path to turn rectangles into circles
+        defs.append("clipPath")
+          .attr("id", "roundPath")
+          .append("circle")
+          .attr("cx", 0)
+          .attr("cy", 0)
+          .attr("r", 50);
+
+        // circle path used to clip the bottom of the image to fake a rounded border
+        defs.append("clipPath")
+          .attr("id", "roundBorderPath")
+          .append("circle")
+          .attr("cx", 0)
+          .attr("cy", -5)
+          .attr("r", 52);
 
         // will update all bubbles based on scope.data
         var updateChart = function(noDelay) {
@@ -75,10 +90,10 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           if (noDelay === false) {
             // update as soon as we get data when on top 10 mode
-            noDelay = !showAll;
+            noDelay = showAll;
           }
 
-          if (!noDelay && now.getTime() - last_update.getTime() < 4000) {
+          if (!noDelay && now.getTime() - last_update.getTime() < 3000) {
             return;
           }
           else {
@@ -90,30 +105,42 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             return b[scope.field] - a[scope.field];
           });
 
-          // only display the top 20
+          // only display the top 15
           if (!showAll) {
-            data = data.slice(0, 20);
+            data = data.slice(0, 15);
           }
 
-          // load profile images
-          data = data.map(function(value, index) {
-            var profile = twitchProfiles.load(value.channel);
+          // prepare data for display
+          data = data.map(function(d, i) {
 
-            // this might be default data but that's fine
-            value.logo = (index < 5 ? profile.logo : profile.thumbnail);
-            value.display_name = profile.display_name;
+            var profile;
 
-            // add a rank-specific class TODO: apply specific CSS to smaller bubbles to save on perf (no rgba etc)
-            value.class = "rank-"+(index+1);
+            // try to cache new profiles
+            if (!(d.channel in profileCache)) {
 
-            // remove the IRC #
-            value.channel = value.channel.replace("#", "");
+              profile = twitchProfiles.load(d.channel);
 
-            return value;
+              // the loader may return best-effort values, don't cache those
+              if ('cachedDate' in profile) {
+                profileCache[d.channel] = profile;
+              }
+            }
+            else {
+              profile = profileCache[d.channel];
+            }
+
+            // enhance data we got from the API with profile details
+            d.rank = (i+1);
+            d.profile_url = "#/channel/"+d.channel.replace("#", "");
+            d.display_name = profile.display_name;
+            d.logo = profile.logo;
+            d.thumbnail = profile.thumbnail;
+
+            return d;
           });
 
           // update data nodes
-          var node = chart.selectAll(".node")
+          var node = chart.selectAll("g")
             .data(
               bubble.nodes({'children':data})
                 .filter(function(d) { return !d.children; }),
@@ -122,87 +149,84 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           // node enter
           var nodeEnter = node.enter()
-            .append("a")
-            .attr("title", "open channel profile (in this tab)")
-            .attr("class", function(d) { return "node "+d.class; });
+            .append("g")
+            .attr("clip-path", "url(#roundPath)");
 
-          var nodeEnterH4 = nodeEnter.append("div")
-            .attr("class", "logo")
-            .style("background", function(d) {
-              return "no-repeat left top "+color(d.channel);
+          var nodeEnterA = nodeEnter.append("a")
+            .attr("xlink:href", function(d) {
+              return d.profile_url;
             })
-            .append("h4");
-
-          nodeEnterH4
-            .append("span");
-
-          nodeEnterH4
-            .append("br");
-
-          nodeEnterH4
-            .append("small");
-
-          // node update, with transition
-          node
-            .transition().duration((showAll ? 2000 : 990))
-            .style("left", function(d) {
-              return Math.round(d.x-d.r)+"px";
-            })
-            .style("top", function(d) {
-              return Math.round(d.y-d.r)+"px";
+            .on('mouseout', function() {
+              d3.select(this).selectAll("text").remove();
             });
+
+          // plain color background
+          nodeEnterA.append("rect")
+            .attr("x", -50)
+            .attr("y", -50)
+            .attr("width", 100)
+            .attr("height", 100)
+            .attr("fill", "#555");
+
+          // stream logo image
+          nodeEnterA.append("image")
+            .attr("clip-path", "url(#roundBorderPath)")
+            .attr("x", -50)
+            .attr("y", -50)
+            .attr("width", 100)
+            .attr("height", 100);
 
           // node update, without transition
           node
-            .attr("class", function(d) { return "node "+d.class; })
-            .attr("href", function(d) {
-              return "/#/channel/"+d.channel;
+            .attr("class", function(d) {
+              return "rank-"+d.rank;
+            });
+
+          // node position update, with transition
+          node
+            .transition().duration(900)
+            .attr("transform", function(d) {
+              return "translate("+(d.x)+", "+(d.y)+") scale("+(d.r / 50)+") ";
             });
 
           // update the streamer's logo
-          node.select(".logo")
-            .style('background-image', function(d) {
-                if (typeof d.logo === "undefined") {
-                  return "";
-                }
-                else {
-                  return 'url("'+d.logo+'")';
-                }
-            })
-            .style('background-size', 'cover');
+          node.each(function(d, i) {
+            var image = d3.select(this).select("image");
 
-          // update the size of the streamer logo
-          node.select(".logo")
-            .transition()
-            .style("border-radius", function(d) {
-              return Math.round(d.r)+"px";
-            })
-            .style("width", function(d) {
-              return 2*Math.round(d.r)+"px";
-            })
-            .style("height", function(d) {
-              return 2*Math.round(d.r)+"px";
-            });
+            // use the thumbnail after rank 10
+            var src = (i <= 10 ? d.logo : d.thumbnail);
 
-          // update the main value, without transition
-          node.select("h4").select("span")
-            .text(function(d) { return format(d[scope.field]); });
+            if (image.attr("xlink:href") !== src) {
+              image.attr("xlink:href", src);
+            }
+          });
 
-          // update the main value, with transition
-          node.select("h4").select("span")
-            .style("font-size", function(d) {
-              return +d.r/30+"em";
-            });
+          // set the mouseover every cycle because d3 caches its result
+          node.select("a").on('mouseover', function(d) {
+            d3.select(this).append("text")
+              .attr("class", "value")
+              .attr("fill", "white")
+              .attr("text-anchor", "middle")
+              .attr("dy", "1em")
+              .attr("font-size", "2em")
+              .text(function() {
+                  return d.value;
+              });
 
-          // update the streamer's name, without transition
-          node.select("h4").select("small")
-            .text(function(d) { return ("display_name" in d ? d.display_name : d.channel); });
-
-          // update the streamer's name, with transition
-          node.select("h4").select("small")
-            .style("font-size", function(d) {
-              return +d.r/80+"em";
-            });
+            d3.select(this).append("text")
+              .attr("class", "channel")
+              .attr("fill", "white")
+              .attr("text-anchor", "middle")
+              .attr("dy", "4.2em")
+              .attr("font-size", "0.6em")
+              .text(function(d) {
+                return d.display_name;
+              });
+          })
+          .select("text.value")
+          .text(function(d) {
+            return d.value;
+          });
 
           // node exit
           node.exit().remove();
