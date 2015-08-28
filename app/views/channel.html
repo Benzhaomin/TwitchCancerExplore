@@ -1,16 +1,16 @@
 
 <section class="profile">
+  <h1 class="no-variant">{{ profile.display_name }}</h1>
+
   <div class="row">
 
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="logo col-lg-4 col-md-6 col-sm-12">
       <a ng-href="{{ profile.url }}" target="_blank" title="open stream in a new tab">
         <img ng-src="{{ profile.logo }}" width="300px" height="300px"></img>
       </a>
     </div>
 
     <div class="col-lg-8 col-md-6 col-sm-12">
-      <h1 class="no-variant">{{ profile.display_name }}</h1>
-
       <div class="statistic">
         <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
         hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b> since
