@@ -19,6 +19,10 @@ section.profile {
 
 h2.category {
   border-bottom: 1px solid #ccc;
+
+  a {
+    color: inherit;
+  }
 }
 
 div.statistic {
