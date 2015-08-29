@@ -32,70 +32,71 @@
 </section>
 
 <section class="stats">
+
   <div class="row">
 
     <div class="col-lg-4 col-md-6 col-sm-12">
 
-      <h1 class="category">Cancer King</h1>
+      <h2 class="category">Cancer King</h2>
 
       <div class="statistic">
         <big count-to="{{ stats.total.cancer.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.total.cancer.rank"></span>
-        <br>cancer points in total
+        <br><b>cancer points</b> in total
       </div>
 
       <div class="statistic">
         <big count-to="{{ stats.minute.cancer.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.minute.cancer.rank"></span>
-        <br>burst record at {{ stats.minute.cancer.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cancer.date | date : 'shortDate' }}
+        <br><b>burst</b> record at {{ stats.minute.cancer.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cancer.date | date : 'shortDate' }}
       </div>
 
       <div class="statistic">
         <big count-to="{{ stats.average.cancer.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.average.cancer.rank"></span>
-        <br>cancer points per minute on average
+        <br><b>cancer points per minute</b> on average
       </div>
 
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12">
 
-      <h1 class="category">Spam King</h1>
+      <h2 class="category">Spam King</h2>
 
       <div class="statistic">
         <big count-to="{{ stats.total.messages.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.total.messages.rank"></span>
-        <br>messages in total
+        <br><b>messages</b> in total
       </div>
 
       <div class="statistic">
         <big count-to="{{ stats.minute.messages.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.minute.messages.rank"></span>
-        <br>burst record at {{ stats.minute.messages.date | date : 'shortTime' }} (UTC) on {{ stats.minute.messages.date | date : 'shortDate' }}
+        <br><b>burst</b> record at {{ stats.minute.messages.date | date : 'shortTime' }} (UTC) on {{ stats.minute.messages.date | date : 'shortDate' }}
       </div>
 
       <div class="statistic">
         <big count-to="{{ stats.average.messages.value }}" value="0" duration="1" filter="number"></big>
         <span rank-badge rank="stats.average.messages.rank"></span>
-        <br>messages per minute on average
+        <br><b>messages per minute</b> on average
       </div>
 
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12">
 
-      <h1 class="category">Cancer Master</h1>
+      <h2 class="category">Cancer Master</h2>
 
       <div class="statistic">
         <big count-to="{{ stats.total.cpm.value }}" value="0" duration="1" filter="number" params="2"></big>
         <span rank-badge rank="stats.total.cpm.rank"></span>
-        <br>cancer points per message in total
+        <br><b>cancer points per message</b> in total
       </div>
 
       <div class="statistic">
         <big count-to="{{ stats.minute.cpm.value }}" value="0" duration="1" filter="number" params="2"></big>
         <span rank-badge rank="stats.minute.cpm.rank"></span>
-        <br>burst record at {{ stats.minute.cpm.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cpm.date | date : 'shortDate' }}
+        <br><b>burst</b> record at {{ stats.minute.cpm.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cpm.date | date : 'shortDate' }}
       </div>
 
       <!--<div class="statistic">
