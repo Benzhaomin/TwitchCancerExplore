@@ -78,8 +78,8 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           .append("a")
           .attr("class", "pull-right")
           .style("margin-top", "-100px")
-          .text("Download")
           .style("color", "white")
+          .text("Download")
           .on("mouseover", function() {
             var svg_xml = (new XMLSerializer).serializeToString(chart.node());
             var serializer = new XMLSerializer();
@@ -91,6 +91,48 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               .attr("href-lang", "image/svg+xml")
               .attr("href", imgData);
           });
+
+        var showNodeValue = function(node) {
+          var text = node.select("text.value");
+
+          if (text.size() === 0) {
+            text = node.append("text")
+              .attr("class", "value")
+              .attr("fill", "white")
+              .attr("text-anchor", "middle")
+              .attr("dy", "1em")
+              .attr("font-size", "2em");
+          }
+
+          return text;
+        };
+
+        var hideNodeValue = function(node, force) {
+          if (force) {
+            node.select("text.value").remove();
+          }
+        };
+
+        var showNodeChannel = function(node) {
+          var text = node.select("text.channel");
+
+          if (text.size() === 0) {
+            text = node.append("text")
+            .attr("class", "channel")
+            .attr("fill", "white")
+            .attr("text-anchor", "middle")
+            .attr("dy", "4.2em")
+            .attr("font-size", "0.6em");
+          }
+
+          return text;
+        };
+
+        var hideNodeChannel = function(node, force) {
+          if (force) {
+            node.select("text.channel").remove();
+          }
+        };
 
         // will update all bubbles based on scope.data
         var updateChart = function(noDelay) {
@@ -198,8 +240,17 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             .attr("xlink:href", function(d) {
               return d.profile_url;
             })
+            .on('mouseover', function(d) {
+              var _this = d3.select(this);
+
+              showNodeValue(_this).text(d[scope.field]);
+              showNodeChannel(_this).text(d.display_name);
+            })
             .on('mouseout', function() {
-              d3.select(this).selectAll("text").remove();
+              var _this = d3.select(this);
+
+              hideNodeValue(_this, false);
+              hideNodeChannel(_this, false);
             });
 
           // plain color background
@@ -231,46 +282,31 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               return "translate("+(d.x)+", "+(d.y)+") scale("+(d.r / 50)+") ";
             });
 
-          // update the streamer's logo
+          // update the node's inner stuff
           node.each(function(d, i) {
-            var image = d3.select(this).select("image");
+            var _this = d3.select(this);
+            var image = _this.select("image");
+            var a = _this.select("a");
 
-            // use the thumbnail after rank 15
+            // use a thumbnail after rank 15
             var src = (i <= 15 ? d.logo : d.thumbnail);
 
             if (image.attr("xlink:href") !== src) {
               image.attr("xlink:href", src);
             }
-          });
 
-          // set the mouseover every cycle because d3 caches its result
-          node.select("a").on('mouseover', function(d) {
+            // remove text on lower nodes
+            if (i >= 5) {
+              hideNodeValue(a, true);
+              hideNodeChannel(a, true);
+            }
+            else {
+              // add the a text object to hold the current d.value
+              showNodeValue(a).text(d[scope.field]);
 
-            // show the current value
-            d3.select(this).append("text")
-              .attr("class", "value")
-              .attr("fill", "white")
-              .attr("text-anchor", "middle")
-              .attr("dy", "1em")
-              .attr("font-size", "2em")
-              .text(function() {
-                  return d[scope.field];
-              });
-
-            // this one never changes but we only have a single mouseover callback
-            d3.select(this).append("text")
-              .attr("class", "channel")
-              .attr("fill", "white")
-              .attr("text-anchor", "middle")
-              .attr("dy", "4.2em")
-              .attr("font-size", "0.6em")
-              .text(function() {
-                return d.display_name;
-              });
-          })
-          .select("text.value")
-          .text(function(d) {
-            return d.value;
+              // add the channel's name, this one never changes
+              showNodeChannel(a).text(d.display_name);
+            }
           });
 
           // node exit

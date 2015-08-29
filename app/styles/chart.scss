@@ -26,12 +26,12 @@ button.man-mode {
   transform-origin: top left;
 
   width: 320px; /* 1000*0.32 */
-  height: 288px; /* 900*0.32 */
+  height: 304px; /* 950*0.32 */
   margin: 0 auto;
 
   .bubbles {
     width: 1000px;
-    height: 900px;
+    height: 950px;
     padding-left: 50px; /* svg groups are moved 50px left to match their center with the rect's center */
     margin-top: -65px; /* bubbles are mostly horizontal and we get dead space on top */
 
@@ -65,7 +65,7 @@ button.man-mode {
   .bubbles-chart {
     transform: scale(0.64);
     width: 640px; /* 1000*0.64 */
-    height: 576px; /* 900*0.64 */
+    height: 608px; /* 950*0.64 */
   }
 }
 /* Responsive: Desktop */
@@ -73,6 +73,6 @@ button.man-mode {
   .bubbles-chart {
     transform: none;
     width: 1000px;
-    height: 900px;
+    height: 950px;
   }
 }
