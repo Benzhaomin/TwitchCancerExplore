@@ -17,38 +17,58 @@
   }
 }
 
-.bubble {
-  width: 1000px;
-  padding-left: 50px;
-  height: 900px;
-  margin: -65px auto -35px;
+.bubbles-chart {
+  transform: scale(0.32);
+  transform-origin: top left;
 
-  button {
-    margin-top: 65px;
+  width: 320px; /* 1000*0.32 */
+  height: 288px; /* 900*0.32 */
+  margin: 0 auto;
+
+  .bubbles {
+    width: 1000px;
+    height: 900px;
+    padding-left: 50px; /* svg groups are moved 50px left to match their center with the rect's center */
+    margin-top: -80px; /* bubbles are mostly horizontal and we get dead space on top */
+
+    g {
+
+      &.rank-1 rect {
+        fill: #ffd741;
+      }
+      &.rank-2 rect {
+        fill: #7e7c7d;
+      }
+      &.rank-3 rect {
+        fill: #d96e38;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      text {
+        font-weight: bold;
+        font-variant: small-caps;
+        text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
+        pointer-events: none;
+      }
+    }
   }
-
-  g {
-
-    &.rank-1 rect {
-      fill: #ffd741;
-    }
-    &.rank-2 rect {
-      fill: #7e7c7d;
-    }
-    &.rank-3 rect {
-      fill: #d96e38;
-    }
-
-    a:hover {
-      text-decoration: none;
-    }
-
-    text {
-      font-weight: bold;
-      font-variant: small-caps;
-      text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
-      pointer-events: none;
-    }
+}
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .bubbles-chart {
+    transform: scale(0.64);
+    width: 640px; /* 1000*0.64 */
+    height: 576px; /* 900*0.64 */
   }
-
+}
+/* Responsive: Desktop */
+@media screen and (min-width: 1200px) {
+  .bubbles-chart {
+    transform: none;
+    width: 1000px;
+    height: 900px;
+  }
 }

@@ -11,7 +11,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
   .directive('bubblesChart', function(twitchProfiles) {
     return {
       restrict: 'E',
-      replace: false,
+      replace: true,
       scope: {data: '=chartData', field: '@chartField'},
       link: function (scope, element) {
         var diameter = 950;
@@ -36,7 +36,6 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         d3.select(element[0])
           .append("button")
           .attr("class", "btn btn-danger pull-right")
-          .style("outline", "0 none")
           .attr("title", "Show all streams, stronk cpu pls")
           .attr("data-toggle", "button")
           .text("Man mode")
@@ -47,8 +46,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           });
 
         // add the main svg element
-        var chart = d3.select(element[0]).append("svg")
-          .attr("class", "bubble");
+        var chart = d3.select(element[0])
+          .append("div")
+          .attr("class", "bubbles-chart") // scaled down on smaller devices
+          .append("svg")
+          .attr("class", "bubbles"); // fixed size to keep everything relative
 
         // add svg definitions
         var defs = chart.append("defs");
@@ -147,7 +149,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               function(d) { return d.channel; }
             );
 
-          // node enter
+          // node enter, one svg group per node, translated and scaled based on d.value
           var nodeEnter = node.enter()
             .append("g")
             .attr("clip-path", "url(#roundPath)");
