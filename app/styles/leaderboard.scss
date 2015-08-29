@@ -1,19 +1,30 @@
 
 div.top10 {
-  position: relative;
   min-height: 180px;
 
   h3 {
-    transform: rotate(-90deg);
-    transform-origin: bottom left;
-    position: absolute;
-    left: 40px;
-    bottom: 0;
-    width: 180px;
+    border-bottom: 1px solid #ccc;
+  }
+}
 
-    color: #555;
-    background: #eee;
-    text-align: center;
+
+/* Responsive: Desktop */
+@media screen and (min-width: 1200px) {
+  div.top10 {
+    position: relative;
+
+    h3 {
+      transform: rotate(-90deg);
+      transform-origin: bottom left;
+      position: absolute;
+      left: 40px;
+      bottom: 0;
+      width: 180px;
+
+      color: #555;
+      background: #eee;
+      text-align: center;
+    }
   }
 }
 
@@ -21,7 +32,7 @@ leaderboard {
 
   ul {
     list-style: none;
-    padding-left: 50px;
+    padding-left: 30px;
 
     li {
       position: relative;

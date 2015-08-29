@@ -17,6 +17,10 @@
   }
 }
 
+button.man-mode {
+  position: relative;
+  z-index: 1;
+}
 .bubbles-chart {
   transform: scale(0.32);
   transform-origin: top left;

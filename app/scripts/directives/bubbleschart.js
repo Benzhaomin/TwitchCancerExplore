@@ -35,7 +35,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
         d3.select(element[0])
           .append("button")
-          .attr("class", "btn btn-danger pull-right")
+          .attr("class", "btn btn-danger pull-right man-mode")
           .attr("title", "Show all streams, stronk cpu pls")
           .attr("data-toggle", "button")
           .text("Man mode")
