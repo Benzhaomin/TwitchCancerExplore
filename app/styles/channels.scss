@@ -42,6 +42,7 @@ div.statistic {
   .badge {
     vertical-align: super;
     margin-left: 4px;
+    font-size: 20px;
   }
 
   .badge.rank-1 {
@@ -81,7 +82,7 @@ div.statistic {
   }
 
   .badge.rank-4 {
-    font-size: 28px;
+    font-size: 30px;
     background: #008800;
   }
 
@@ -91,22 +92,22 @@ div.statistic {
   }
 
   .badge.rank-6 {
-    font-size: 24px;
+    font-size: 26px;
     background: #006600;
   }
 
   .badge.rank-7 {
-    font-size: 22px;
+    font-size: 24px;
     background: #005500;
   }
 
   .badge.rank-8 {
-    font-size: 18px;
+    font-size: 22px;
     background: #004400;
   }
 
   .badge.rank-9 {
-    font-size: 16px;
+    font-size: 20px;
     background: #003300;
   }
 }
