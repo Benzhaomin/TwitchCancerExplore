@@ -149,10 +149,29 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               function(d) { return d.channel; }
             );
 
+          // check if we've just created the chart
+          var firstCycle = (node.size() === 0);
+
           // node enter, one svg group per node, translated and scaled based on d.value
           var nodeEnter = node.enter()
             .append("g")
             .attr("clip-path", "url(#roundPath)");
+
+          // node entering in the very first cycle appear from the center
+          if (firstCycle) {
+            nodeEnter.attr("transform", function(d) {
+              return "translate(450, 450) scale(1) ";
+            });
+          }
+          // nodes enter from out of the canvas in a straight line to their destination
+          else {
+            nodeEnter.attr("transform", function(d) {
+              var dx = 5*(d.x-500);
+              var dy = 5*(d.y-500);
+
+              return "translate("+dx+", "+dy+") scale(1) ";
+            });
+          }
 
           var nodeEnterA = nodeEnter.append("a")
             .attr("xlink:href", function(d) {
@@ -195,8 +214,8 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           node.each(function(d, i) {
             var image = d3.select(this).select("image");
 
-            // use the thumbnail after rank 10
-            var src = (i <= 10 ? d.logo : d.thumbnail);
+            // use the thumbnail after rank 15
+            var src = (i <= 15 ? d.logo : d.thumbnail);
 
             if (image.attr("xlink:href") !== src) {
               image.attr("xlink:href", src);
@@ -234,7 +253,15 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           });
 
           // node exit
-          node.exit().remove();
+          node.exit()
+            .transition().duration(600)
+            .attr("transform", function(d) {
+              var dx = 5*(d.x-500);
+              var dy = 5*(d.y-500);
+
+              return "translate("+dx+", "+dy+") scale(1) ";
+            })
+            .remove();
         };
 
         scope.$watch('data', function() { updateChart(false); });
