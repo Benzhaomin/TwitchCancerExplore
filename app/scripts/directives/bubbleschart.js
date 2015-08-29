@@ -19,7 +19,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         var bubble = d3.layout.pack()
           .sort(null)
           .size([diameter, diameter])
-          .padding(0)
+          .padding(1.5)
           .value(function(d) {
             return d[scope.field];
           });
@@ -35,7 +35,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
         d3.select(element[0])
           .append("button")
-          .attr("class", "btn btn-danger pull-right man-mode")
+          .attr("class", "btn btn-danger pull-left man-mode")
           .attr("title", "Show all streams, stronk cpu pls")
           .attr("data-toggle", "button")
           .text("Man mode")
@@ -50,6 +50,8 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           .append("div")
           .attr("class", "bubbles-chart") // scaled down on smaller devices
           .append("svg")
+          .attr("width", 950)
+          .attr("height", 950)
           .attr("class", "bubbles"); // fixed size to keep everything relative
 
         // add svg definitions
@@ -70,6 +72,25 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           .attr("cx", 0)
           .attr("cy", -5)
           .attr("r", 52);
+
+        // add a (hidden) download link
+        var download = d3.select(element[0])
+          .append("a")
+          .attr("class", "pull-right")
+          .style("margin-top", "-100px")
+          .text("Download")
+          .style("color", "white")
+          .on("mouseover", function() {
+            var svg_xml = (new XMLSerializer).serializeToString(chart.node());
+            var serializer = new XMLSerializer();
+            var xmlString = serializer.serializeToString(chart.node());
+            var imgData = 'data:image/svg+xml;base64,' + btoa(xmlString);
+
+            d3.select(this)
+              .attr("download", "chart.svg")
+              .attr("href-lang", "image/svg+xml")
+              .attr("href", imgData);
+          });
 
         // will update all bubbles based on scope.data
         var updateChart = function(noDelay) {
