@@ -19,15 +19,21 @@ header {
     border-radius: 0;
     border: 0 none;
 
-    & .navbar-nav > li.active {
-      background: #484848;
+    .navbar-nav > .active > a,
+    .navbar-nav > .active > a:hover,
+    .navbar-nav > .active > a:focus {
+      background: #FAFAFA;
     }
 
-    & .navbar-nav > li > a,{
+    .navbar-nav > li.active {
+      background: #FAFAFA;
+    }
+
+    .navbar-nav > li > a,{
       color: white;
     }
-    & .navbar-nav > li > a:focus ,
-    & .navbar-nav > li > a:hover {
+    .navbar-nav > li > a:focus ,
+    .navbar-nav > li > a:hover {
       color: #FAFAFA;
     }
 
