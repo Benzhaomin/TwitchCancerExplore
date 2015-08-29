@@ -20,7 +20,9 @@
 button.man-mode {
   position: relative;
   z-index: 1;
+  outline: 0 none;
 }
+
 .bubbles-chart {
   transform: scale(0.32);
   transform-origin: top left;
@@ -29,36 +31,14 @@ button.man-mode {
   height: 304px; /* 950*0.32 */
   margin: 0 auto;
 
-  .bubbles {
+  svg.bubbles {
     width: 1000px;
     height: 950px;
     padding-left: 50px; /* svg groups are moved 50px left to match their center with the rect's center */
     margin-top: -65px; /* bubbles are mostly horizontal and we get dead space on top */
-
-    g {
-
-      &.rank-1 rect {
-        fill: #ffd741;
-      }
-      &.rank-2 rect {
-        fill: #7e7c7d;
-      }
-      &.rank-3 rect {
-        fill: #d96e38;
-      }
-
-      a:hover {
-        text-decoration: none;
-      }
-
-      text {
-        font-weight: bold;
-        font-variant: small-caps;
-        text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;
-        pointer-events: none;
-      }
-    }
   }
+
+  /* no CSS styling inside the svg object, we want it to be downloadable */
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

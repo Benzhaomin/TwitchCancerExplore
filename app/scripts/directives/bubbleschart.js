@@ -101,7 +101,12 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               .attr("fill", "white")
               .attr("text-anchor", "middle")
               .attr("dy", "1em")
-              .attr("font-size", "2em");
+              .attr("style", "font-weight: bold; \
+                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; \
+                font-variant: small-caps; \
+                font-size: 28px; \
+                text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black; \
+                pointer-events: none;");
           }
 
           return text;
@@ -118,11 +123,16 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           if (text.size() === 0) {
             text = node.append("text")
-            .attr("class", "channel")
-            .attr("fill", "white")
-            .attr("text-anchor", "middle")
-            .attr("dy", "4.2em")
-            .attr("font-size", "0.6em");
+              .attr("class", "channel")
+              .attr("fill", "white")
+              .attr("text-anchor", "middle")
+              .attr("dy", "4.2em")
+              .attr("style", "font-weight: bold; \
+                font-variant: small-caps; \
+                font-size: 8.4px; \
+                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; \
+                text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black; \
+                pointer-events: none;");
           }
 
           return text;
@@ -196,7 +206,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
             // enhance data we got from the API with profile details
             d.rank = (i+1);
-            d.profile_url = "#/channel/"+d.channel.replace("#", "");
+            d.profile_url = window.location + "channel/"+d.channel.replace("#", "");
             d.display_name = profile.display_name;
             d.logo = profile.logo;
             d.thumbnail = profile.thumbnail;
@@ -240,6 +250,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             .attr("xlink:href", function(d) {
               return d.profile_url;
             })
+            .attr("style", "text-decoration: none;")
             .on('mouseover', function(d) {
               var _this = d3.select(this);
 
@@ -285,6 +296,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // update the node's inner stuff
           node.each(function(d, i) {
             var _this = d3.select(this);
+            var rect = _this.select("rect");
             var image = _this.select("image");
             var a = _this.select("a");
 
@@ -293,6 +305,20 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
             if (image.attr("xlink:href") !== src) {
               image.attr("xlink:href", src);
+            }
+
+            // set the background's rect color
+            if (i === 0) {
+              rect.attr("fill", "#ffd741");
+            }
+            else if (i === 1) {
+              rect.attr("fill", "#7e7c7d");
+            }
+            else if (i === 2) {
+              rect.attr("fill", "#d96e38");
+            }
+            else {
+              rect.attr("fill", "#555");
             }
 
             // remove text on lower nodes
