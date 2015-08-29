@@ -27,7 +27,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="HeaderController">
+    <header class="header" ng-controller="HeaderController">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -39,7 +39,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/" title="Twitch Chat Cancer Monitor">TwitchCancer <small><span class="label label-info" style="vertical-align: super;">Beta</span></small></a>
+            <a class="navbar-brand" href="#/" title="Twitch Chat Cancer Monitor">Twitch Cancer <small><span class="label label-info" style="vertical-align: super;">Beta</span></small></a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -53,15 +53,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </header>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ng-view=""></div>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
       <div class="container">
-        <p><a href="https://addons.mozilla.org/en-US/firefox/addon/twitch-no-cancerino/?src=twitchcancerexplore">Twitch No Cancerino</a>: cure chat cancer in Firefox. <a href="https://github.com/Benzhaomin/TwitchCancerExplore" target="_blank">Website source code</a>.</p>
+        <p class="legal">
+            This is an independent site not run by Twitch. Stream logos are the property of their respective owners.
+        </p>
+
+        <p>
+          <a href="https://github.com/Benzhaomin/TwitchCancerExplore" target="_blank">Source code</a>. Friend: <a href="https://addons.mozilla.org/en-US/firefox/addon/twitch-no-cancerino/?src=twitchcancerexplore">Twitch No Cancerino</a>, cure chat cancer in Firefox.
+        </p>
       </div>
     </div>
 
