@@ -46,7 +46,7 @@
 
             <ul class="nav navbar-nav">
               <li ng-class="{ active: isActive('/') }"><a href="#/">Bubbles</a></li>
-              <li ng-class="{ active: isActive('/leaderboards') }"><a ui-sref="leaderboards" ng-href="#/leaderboards">Leaderboards</a></li>
+              <li ng-class="{ active: isActive('/leaderboards') || isActive('/leaderboard') }"><a ui-sref="leaderboards" ng-href="#/leaderboards">Leaderboards</a></li>
               <!--<li><a ng-href="#/channels">Channels</a></li>-->
               <li ng-class="{ active: isActive('/about') }"><a ui-sref="about" ng-href="#/about">About</a></li>
             </ul>
@@ -96,6 +96,7 @@
     <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/channel.js"></script>
+    <script src="scripts/controllers/leaderboard.js"></script>
     <script src="scripts/controllers/leaderboards.js"></script>
     <!-- endbuild -->
 </body>

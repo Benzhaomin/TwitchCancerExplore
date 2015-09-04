@@ -15,6 +15,7 @@ angular
     'ui.bootstrap',
     'controllers.main',
     'controllers.about',
+    'controllers.leaderboard',
     'controllers.leaderboards',
     'controllers.channel',
     'controllers.header',
@@ -36,6 +37,11 @@ angular
         templateUrl: 'views/leaderboards.html',
         controller: 'LeaderboardsCtrl',
         controllerAs: 'leaderboards'
+      })
+      .when('/leaderboard/:leaderboardName', {
+        templateUrl: 'views/leaderboard.html',
+        controller: 'LeaderboardCtrl',
+        controllerAs: 'leaderboard'
       })
       .when('/channel/:channelName', {
         templateUrl: 'views/channel.html',
