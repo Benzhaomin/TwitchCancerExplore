@@ -55,6 +55,10 @@ footer {
   color: #FAFAFA;
   background-color: #262626;
   padding: 25px 15px 15px 15px;
+
+  a {
+    color: #456789;
+  }
 }
 
 h1, h2, h3 {
@@ -94,6 +98,12 @@ h1 {
 /* accessibility comes second it seems */
 a {
   outline: none !important;
+}
+
+blockquote {
+  a {
+    color: inherit;
+  }
 }
 
 /* Responsive: Portrait tablets and up */
