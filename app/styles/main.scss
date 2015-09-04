@@ -49,6 +49,21 @@ header {
       }
     }
   }
+
+  ul.dropdown-menu {
+    position: absolute;
+    background: #262626;
+    color: white;
+    padding: 10px;
+    list-style-type: none;
+
+    li {
+
+      a {
+        color: inherit;
+      }
+    }
+  }
 }
 
 footer {

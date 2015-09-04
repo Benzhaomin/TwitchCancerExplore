@@ -50,9 +50,33 @@
               <!--<li><a ng-href="#/channels">Channels</a></li>-->
               <li ng-class="{ active: isActive('/about') }"><a ui-sref="about" ng-href="#/about">About</a></li>
             </ul>
+
+            <div class="col-sm-3 col-md-3 pull-right">
+              <form class="navbar-form" role="search" ng-submit="submit()">
+                <div class="input-group">
+                  <script type="text/ng-template" id="searchTemplate.html">
+                    <a ng-href="#/channel/{{ match.model }}">
+                       {{ match.model }}
+                    </a>
+                  </script>
+
+                  <input type="search"
+                    placeholder="Search"
+                    class="form-control"
+                    ng-model="searched"
+                    typeahead="address for address in search($viewValue)"
+                    typeahead-min-length="3"
+                    typeahead-loading="searching"
+                    typeahead-template-url="searchTemplate.html">
+                </div>
+              </form>
+            </div>
+
           </div>
         </div>
       </div>
+
+
     </header>
 
     <div class="container">
