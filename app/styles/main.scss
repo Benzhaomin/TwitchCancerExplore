@@ -31,12 +31,12 @@ header {
     }
 
     .navbar-nav > li.active {
-      background: #FAFAFA;
 
       a,
       a:hover,
       a:focus {
         color: black;
+        background: #FAFAFA;
       }
     }
 
