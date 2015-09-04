@@ -113,7 +113,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         };
 
         var hideNodeValue = function(node, force) {
-          if (force) {
+          if (force && node.attr('data-hover') !== "true") {
             node.select("text.value").remove();
           }
         };
@@ -139,7 +139,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         };
 
         var hideNodeChannel = function(node, force) {
-          if (force) {
+          if (force && node.attr('data-hover') !== "true") {
             node.select("text.channel").remove();
           }
         };
@@ -254,12 +254,14 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             .on('mouseover', function(d) {
               var _this = d3.select(this);
 
+              _this.attr("data-hover", true);
               showNodeValue(_this).text(d[scope.field]);
               showNodeChannel(_this).text(d.display_name);
             })
             .on('mouseout', function() {
               var _this = d3.select(this);
 
+              _this.attr("data-hover", false);
               hideNodeValue(_this, false);
               hideNodeChannel(_this, false);
             });
@@ -327,12 +329,15 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               hideNodeChannel(a, true);
             }
             else {
-              // add the a text object to hold the current d.value
-              showNodeValue(a).text(d[scope.field]);
+              // add the a text object to hold the value
+              showNodeValue(a);
 
               // add the channel's name, this one never changes
               showNodeChannel(a).text(d.display_name);
             }
+
+            // update the value with the current d.value
+            a.select('text.value').text(d[scope.field]);
           });
 
           // node exit
