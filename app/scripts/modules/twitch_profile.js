@@ -91,7 +91,7 @@ angular
         title: '@',
         rank: '@'
       },
-      templateUrl : 'views/twitch_profile.html',
+      templateUrl : 'views/parts/twitch_profile.html',
       link: function(scope) {
 
         // ask the factory to load the profile and render the template when the profile is ready

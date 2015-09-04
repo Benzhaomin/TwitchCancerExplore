@@ -13,7 +13,7 @@ angular.module('directives.leaderboard', ['twitchProfile'])
     return {
       restrict: 'E',
       replace: false,
-      templateUrl : 'views/leaderboard.html',
+      templateUrl : 'views/parts/leaderboard.html',
       scope: {records: '=boardData', decimals: '@'}
     };
   })
