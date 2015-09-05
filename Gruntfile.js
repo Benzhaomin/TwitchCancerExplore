@@ -465,7 +465,7 @@ module.exports = function (grunt) {
           stylesheets : ['styles/vendor/bootstrap-custom.css'],
 
           // list of bootstrap classes used dynamically, we want to keep them
-          ignore: [/\.tooltip.*/, /\.popover.*/, /\.badge.*/, /\.btn.*/, '.pull-right']
+          ignore: [/\.tooltip.*/, /\.popover.*/, /\.badge.*/, /\.btn.*/, '.pull-right', 'blockquote']
         },
         files : {
             '.tmp/styles/vendor/bootstrap-custom.css': [
