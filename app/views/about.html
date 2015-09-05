@@ -38,7 +38,7 @@
 
   <div class="row">
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <h2 class="category"><span>Live</a></h2>
 
       <div class="statistic">
@@ -57,21 +57,59 @@
       </div>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
+      <h2 class="category"><span>Daily</a></h2>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.daily.cancer }}" value="0" duration="1" filter="number"></big>
+        <br><b>cancer points</b> today
+      </div>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.daily.messages }}" value="0" duration="1" filter="number"></big>
+        <br><b>messages</b> today
+      </div>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.daily.channels }}" value="0" duration="1" filter="number"></big>
+        <br><b>channels</b> recorded
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <h2 class="category"><span>Monthly</a></h2>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.monthly.cancer }}" value="0" duration="1" filter="number"></big>
+        <br><b>cancer points</b> this month
+      </div>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.monthly.messages }}" value="0" duration="1" filter="number"></big>
+        <br><b>messages</b> this month
+      </div>
+
+      <div class="statistic">
+        <big count-to="{{ status.total.monthly.channels }}" value="0" duration="1" filter="number"></big>
+        <br><b>channels</b> recorded
+      </div>
+    </div>
+
+    <div class="col-lg-3">
       <h2 class="category"><span>Total</a></h2>
 
       <div class="statistic">
-        <big count-to="{{ status.total.cancer }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ status.total.all.cancer }}" value="0" duration="1" filter="number"></big>
         <br><b>cancer points</b> in total
       </div>
 
       <div class="statistic">
-        <big count-to="{{ status.total.messages }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ status.total.all.messages }}" value="0" duration="1" filter="number"></big>
         <br><b>messages</b> in total
       </div>
 
       <div class="statistic">
-        <big count-to="{{ status.total.channels }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ status.total.all.channels }}" value="0" duration="1" filter="number"></big>
         <br><b>channels</b> recorded
       </div>
     </div>
