@@ -39,4 +39,15 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 't
       template: '<span class="badge rank-{{rank}}">{{rank | ordinal}}</span>'
     };
   })
+  .directive('channelStats', function() {
+    return {
+      restrict: 'E',
+      replace: false,
+      templateUrl : 'views/parts/channel_stats.html',
+      scope: {
+        stats: '=',
+        title: '@'
+      }
+    };
+  })
 ;

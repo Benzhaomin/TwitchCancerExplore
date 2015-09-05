@@ -12,10 +12,10 @@
 
     <div class="col-lg-8 col-md-6 col-sm-12">
       <div class="statistic">
-        <big count-to="{{ stats.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
+        <big count-to="{{ stats.all.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
         hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b> since
         {{ stats.total.since | date }}
-        <span rank-badge rank="stats.total.duration.rank"></span>
+        <span rank-badge rank="stats.all.total.duration.rank"></span>
       </div>
 
       <div class="statistic">
@@ -31,82 +31,8 @@
   </div>
 </section>
 
-<section class="stats">
+<channel-stats stats="stats.daily" title="Today"></channel-stats>
 
-  <div class="row">
+<channel-stats stats="stats.monthly" title="Monthly"></channel-stats>
 
-    <div class="col-lg-4 col-md-6 col-sm-12">
-
-      <h2 class="category"><span><a href="#/leaderboards#cancer-leaders">Cancer King</a></span></h2>
-
-      <div class="statistic">
-        <big count-to="{{ stats.total.cancer.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.total.cancer.rank"></span>
-        <br><b>cancer points</b> in total
-      </div>
-
-      <div class="statistic">
-        <big count-to="{{ stats.minute.cancer.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.minute.cancer.rank"></span>
-        <br><b>burst</b> record at {{ stats.minute.cancer.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cancer.date | date : 'shortDate' }}
-      </div>
-
-      <div class="statistic">
-        <big count-to="{{ stats.average.cancer.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.average.cancer.rank"></span>
-        <br><b>cancer points per minute</b> on average
-      </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-12">
-
-      <h2 class="category"><span><a href="#/leaderboards#spam-leaders">Spam King</a></span></h2>
-
-      <div class="statistic">
-        <big count-to="{{ stats.total.messages.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.total.messages.rank"></span>
-        <br><b>messages</b> in total
-      </div>
-
-      <div class="statistic">
-        <big count-to="{{ stats.minute.messages.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.minute.messages.rank"></span>
-        <br><b>burst</b> record at {{ stats.minute.messages.date | date : 'shortTime' }} (UTC) on {{ stats.minute.messages.date | date : 'shortDate' }}
-      </div>
-
-      <div class="statistic">
-        <big count-to="{{ stats.average.messages.value }}" value="0" duration="1" filter="number"></big>
-        <span rank-badge rank="stats.average.messages.rank"></span>
-        <br><b>messages per minute</b> on average
-      </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-12">
-
-      <h2 class="category"><span><a href="#/leaderboards#cpm-leaders">Cancer Master</a></span></h2>
-
-      <div class="statistic">
-        <big count-to="{{ stats.total.cpm.value }}" value="0" duration="1" filter="number" params="2"></big>
-        <span rank-badge rank="stats.total.cpm.rank"></span>
-        <br><b>cancer points per message</b> in total
-      </div>
-
-      <div class="statistic">
-        <big count-to="{{ stats.minute.cpm.value }}" value="0" duration="1" filter="number" params="2"></big>
-        <span rank-badge rank="stats.minute.cpm.rank"></span>
-        <br><b>burst</b> record at {{ stats.minute.cpm.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cpm.date | date : 'shortDate' }}
-      </div>
-
-      <!--<div class="statistic">
-        <big count-to="{{ stats.average.cpm.value }}" value="0" duration="1" filter="number" params="2">></big>
-        <span rank-badge rank="stats.average.cpm.rank"></span>
-        <br>cancer points per message on average
-      </div>-->
-
-    </div>
-
-  </div>
-
-</section>
+<channel-stats stats="stats.all" title="All-time"></channel-stats>
