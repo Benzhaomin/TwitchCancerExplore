@@ -50,12 +50,12 @@ angular.module('controllers.leaderboard', ['api.websocket'])
     $scope.title = leaderboards[$scope.leaderboardName].title;
     $scope.decimals = leaderboards[$scope.leaderboardName].decimals;
 
-    api.subscribe("twitchcancer.leaderboard.all."+$scope.leaderboardName, function(json) {
+    api.subscribe("twitchcancer.leaderboard."+$scope.leaderboardHorizon+"."+$scope.leaderboardName, function(json) {
       $scope.leaderboard = json;
     });
 
     $scope.$on("$destroy", function() {
-      api.unsubscribe("twitchcancer.leaderboard.all."+$scope.leaderboardName);
+      api.unsubscribe("twitchcancer.leaderboard."+$scope.leaderboardHorizon+"."+$scope.leaderboardName);
     });
   })
 ;
