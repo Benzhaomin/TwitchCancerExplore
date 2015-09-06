@@ -23,7 +23,7 @@ angular.module('controllers.leaderboard', ['api.websocket'])
       },
       'cancer.average': {
         'title': "Cancer points on average",
-        'decimals': 2
+        'decimals': 0
       },
       'messages.minute': {
         'title': "Message count in a minute",
@@ -35,7 +35,7 @@ angular.module('controllers.leaderboard', ['api.websocket'])
       },
       'messages.average': {
         'title': "Message count on average",
-        'decimals': 2
+        'decimals': 0
       },
       'cpm.minute':  {
         'title': "Cancer per message in a minute",
