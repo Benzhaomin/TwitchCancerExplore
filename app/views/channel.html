@@ -11,11 +11,10 @@
     </div>
 
     <div class="col-lg-8 col-md-6 col-sm-12">
+      <quote tags="['channel', channelName]"></quote>
+
       <div class="statistic">
-        <big count-to="{{ stats.all.total.duration.value / 60 / 60 }}" value="0" duration="1" filter="number"></big>
-        hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b>
-        since {{ stats.all.total.since | date }}
-        <span rank-badge rank="stats.all.total.duration.rank"></span>
+         <big>{{ profile.game }}</big> roleplayer
       </div>
 
       <div class="statistic">
@@ -24,7 +23,10 @@
       </div>
 
       <div class="statistic">
-         <big>{{ profile.game }}</big> roleplayer
+        <big count-to="{{ stats.all.total.duration.value / 60 / 60 }}" value="0" duration="1" filter="number"></big>
+        hours <b tooltip="while in the top 100 streams list">recorded</b>
+        since {{ stats.all.total.since | date }}
+        <span rank-badge rank="stats.all.total.duration.rank"></span>
       </div>
     </div>
 

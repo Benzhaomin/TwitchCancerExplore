@@ -7,7 +7,7 @@
  * # ChannelCtrl
  * Controller of the channel view
  */
-angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'twitchProfile'])
+angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'directives.quote', 'twitchProfile'])
   .controller('ChannelCtrl', function($scope, $routeParams, api, twitchProfiles) {
     $scope.channelName = $routeParams.channelName;
 

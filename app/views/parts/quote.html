@@ -1,0 +1,12 @@
+
+<blockquote ng-if="quote">
+  <span class="quote">
+    {{ quote }}
+  </span>
+  <br><br>
+  --
+  <a ng-if="url !== ''" ng-href="{{ url }}">{{ author }}</a>
+  <span class="author" ng-if="url === ''">{{ author }}</span>
+
+  <div class="disclaimer">Fake Quote Is Fake Maybe</div>
+</blockquote>

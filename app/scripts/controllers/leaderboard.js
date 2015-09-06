@@ -7,7 +7,7 @@
  * # LeaderboardCtrl
  * Controller of the leaderboard view
  */
-angular.module('controllers.leaderboard', ['api.websocket'])
+angular.module('controllers.leaderboard', ['directives.quote', 'api.websocket'])
   .controller('LeaderboardCtrl', function($scope, $routeParams, api) {
     $scope.leaderboardName = $routeParams.leaderboardName;
     $scope.leaderboardHorizon = $routeParams.leaderboardHorizon;

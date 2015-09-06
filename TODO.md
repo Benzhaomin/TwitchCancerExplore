@@ -1,6 +1,7 @@
 
 High
 - test functionnality on various browsers and OS
+- https://docs.angularjs.org/guide/production
 
 Normal
 - add documentation

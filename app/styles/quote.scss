@@ -1,0 +1,22 @@
+
+blockquote {
+  position: relative;
+  line-height: 20px;
+
+  span.quote {
+  }
+
+  span.author {
+  }
+
+  div.disclaimer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-variant: small-caps;
+    color: rgba(0,0,0,0.04);
+    font-size: 12px;
+    width: 30%;
+    text-align: right;
+  }
+}
