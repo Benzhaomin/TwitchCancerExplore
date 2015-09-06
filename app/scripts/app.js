@@ -12,11 +12,13 @@ angular
   .module('twitchCancer', [
     'ngRoute',
     'ngWebSocket',
+    'ngSanitize',
     'ui.bootstrap',
     'controllers.main',
     'controllers.about',
     'controllers.leaderboard',
     'controllers.leaderboards',
+    'controllers.leaderboardHorizon',
     'controllers.channel',
     'controllers.header',
     'services.config'
@@ -33,7 +35,7 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/leaderboards', {
+      .when('/leaderboards/:leaderboardHorizon', {
         templateUrl: 'views/leaderboards.html',
         controller: 'LeaderboardsCtrl',
         controllerAs: 'leaderboards'

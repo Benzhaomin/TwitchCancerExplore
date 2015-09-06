@@ -25,6 +25,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-filter-count-to/dist/angular-filter-count-to.min.js',
       'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-websocket/angular-websocket.min.js',
       'bower_components/angularjs-ordinal-filter/ordinal-browser.js',
       'bower_components/d3/d3.js',

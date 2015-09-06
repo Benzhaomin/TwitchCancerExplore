@@ -7,6 +7,34 @@ div.top10 {
   }
 }
 
+div.horizon-switcher {
+  float: right;
+  background: yellow;
+  color: black;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      width: 100px;
+      padding: 10px 5px;
+      background: #262626;
+      float: left;
+      text-align: center;
+
+      &.active {
+        background: #6A6A6A;
+      }
+
+      a {
+        color: white;
+      }
+    }
+
+  }
+}
 
 /* Responsive: Desktop */
 @media screen and (min-width: 1200px) {

@@ -8,14 +8,15 @@
  * Controller of the leaderboards view
  */
 angular.module('controllers.leaderboards', ['directives.leaderboard', 'api.websocket'])
-  .controller('LeaderboardsCtrl', function($scope, api) {
+  .controller('LeaderboardsCtrl', function($scope, $routeParams, api) {
+    $scope.leaderboardHorizon = $routeParams.leaderboardHorizon;
 
-    api.subscribe("twitchcancer.leaderboards", function(json) {
+    api.subscribe("twitchcancer.leaderboards."+$scope.leaderboardHorizon, function(json) {
       $scope.leaderboards = json;
     });
 
     $scope.$on("$destroy", function() {
-      api.unsubscribe("twitchcancer.leaderboards");
+      api.unsubscribe("twitchcancer.leaderboards."+$scope.leaderboardHorizon);
     });
-  })
+  });
 ;
