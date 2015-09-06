@@ -1,18 +1,33 @@
 
 <div class="statistic">
-  <big count-to="{{ stats.total[metric].value }}" value="0" duration="1" filter="number"></big>
+  <big count-to="{{ stats.total[metric].value }}"
+    value="0"
+    duration="1"
+    filter="number"
+    ng-attr-params="{{ (metric === 'cpm' ? 2 : 0) }}"></big>
+
   <span rank-badge rank="stats.total[metric].rank"></span>
   <br><b>{{ metricName }}</b>
 </div>
 
 <div class="statistic">
-  <big count-to="{{ stats.minute[metric].value }}" value="0" duration="1" filter="number"></big>
+  <big count-to="{{ stats.minute[metric].value }}"
+    value="0"
+    duration="1"
+    filter="number"
+    ng-attr-params="{{ (metric === 'cpm' ? 2 : 0) }}"></big>
+
   <span rank-badge rank="stats.minute[metric].rank"></span>
   <br><b>burst</b><span ng-if="stats.minute[metric].value != '0'"> record at {{ stats.minute.cancer.date | date : 'shortTime' }} (UTC) on {{ stats.minute.cancer.date | date : 'shortDate' }}</span>
 </div>
 
 <div ng-if="metric != 'cpm'" class="statistic">
-  <big count-to="{{ stats.average[metric].value }}" value="0" duration="1" filter="number"></big>
+  <big count-to="{{ stats.average[metric].value }}"
+    value="0"
+    duration="1"
+    filter="number"
+    ng-attr-params="{{ (metric === 'cpm' ? 2 : 0) }}"></big>
+
   <span rank-badge rank="stats.average[metric].rank"></span>
   <br><b>{{ metricName }} per minute</b> on average
 </div>
