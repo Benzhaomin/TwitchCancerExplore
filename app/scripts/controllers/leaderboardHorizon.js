@@ -36,7 +36,7 @@ angular.module('controllers.leaderboardHorizon', [])
         else if (horizon === "monthly") {
           var date  = $filter('date')(new Date(), 'MMMM yyyy');
 
-          return date;
+          return "This month <small>"+date+"</small>";
         }
         else if (horizon === "daily") {
           var date  = $filter('date')(new Date(), 'shortDate');
