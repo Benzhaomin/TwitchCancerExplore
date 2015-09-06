@@ -40,7 +40,7 @@ angular
         controller: 'LeaderboardsCtrl',
         controllerAs: 'leaderboards'
       })
-      .when('/leaderboard/:leaderboardName', {
+      .when('/leaderboard/:leaderboardName/:leaderboardHorizon', {
         templateUrl: 'views/leaderboard.html',
         controller: 'LeaderboardCtrl',
         controllerAs: 'leaderboard'

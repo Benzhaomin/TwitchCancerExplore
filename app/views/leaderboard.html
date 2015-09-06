@@ -1,7 +1,22 @@
-<h1><span>{{ title }}</span></h1>
 
-<ul class="leaderboard leaderboard-full ">
-  <li ng-repeat='record in leaderboard track by record.channel'>
-    <twitchprofile channel="{{ record.channel }}" title="{{ record.value | number : decimals }}" rank="{{ $index+1 }}"></twitchprofile>
-  </li>
-</ul>
+<section id="leaderboard-horizon" ng-controller="LeaderboardHorizonController">
+  <div class="horizon-switcher">
+    <ul>
+      <li ng-class="{ active: isActive('daily') }"><a ng-href="#/leaderboard/{{ leaderboardName }}/daily" title="today's best">Daily</a></li>
+      <li ng-class="{ active: isActive('monthly') }"><a ng-href="#/leaderboard/{{ leaderboardName }}/monthly" title="best of this month">Monthly</a></li>
+      <li ng-class="{ active: isActive('all') }"><a ng-href="#/leaderboard/{{ leaderboardName }}/all"title="all-time best">All-time</a></li>
+    </ul>
+  </div>
+
+  <h1><span ng-bind-html="leaderboardHorizon | horizon"></span></h1>
+</section>
+
+<section id="full-leaderboard">
+  <h2><span>{{ title }}</span></h2>
+
+  <ul class="leaderboard leaderboard-full ">
+    <li ng-repeat='record in leaderboard track by record.channel'>
+      <twitchprofile channel="{{ record.channel }}" title="{{ record.value | number : decimals }}" rank="{{ $index+1 }}"></twitchprofile>
+    </li>
+  </ul>
+</section>

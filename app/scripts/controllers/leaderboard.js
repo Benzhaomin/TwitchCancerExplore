@@ -10,6 +10,7 @@
 angular.module('controllers.leaderboard', ['api.websocket'])
   .controller('LeaderboardCtrl', function($scope, $routeParams, api) {
     $scope.leaderboardName = $routeParams.leaderboardName;
+    $scope.leaderboardHorizon = $routeParams.leaderboardHorizon;
 
     var leaderboards = {
       'cancer.minute': {
