@@ -46,7 +46,21 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 't
       templateUrl : 'views/parts/channel_stats.html',
       scope: {
         stats: '=',
-        title: '@'
+        metric: '@',
+        metricTitle: '@',
+        metricName: '@'
+      }
+    };
+  })
+  .directive('metricStats', function() {
+    return {
+      restrict: 'E',
+      replace: false,
+      templateUrl : 'views/parts/metric_stats.html',
+      scope: {
+        stats: '=',
+        metric: '=',
+        metricName: '='
       }
     };
   })

@@ -12,9 +12,9 @@
 
     <div class="col-lg-8 col-md-6 col-sm-12">
       <div class="statistic">
-        <big count-to="{{ stats.all.total.duration.value / 60 }}" value="0" duration="1" filter="number"></big>
-        hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b> since
-        {{ stats.total.since | date }}
+        <big count-to="{{ stats.all.total.duration.value / 60 / 60 }}" value="0" duration="1" filter="number"></big>
+        hours <b tooltip="only streams from the top 100 and with more than 1000 viewers are monitored at any given time">recorded</b>
+        since {{ stats.all.total.since | date }}
         <span rank-badge rank="stats.all.total.duration.rank"></span>
       </div>
 
@@ -31,8 +31,8 @@
   </div>
 </section>
 
-<channel-stats stats="stats.daily" title="Today"></channel-stats>
+<channel-stats stats="stats" metric="cancer" metric-name="cancer points" metric-title="Cancer King"></channel-stats>
 
-<channel-stats stats="stats.monthly" title="Monthly"></channel-stats>
+<channel-stats stats="stats" metric="messages" metric-name="messages" metric-title="Spam King"></channel-stats>
 
-<channel-stats stats="stats.all" title="All-time"></channel-stats>
+<channel-stats stats="stats" metric="cpm" metric-name="cancer points per message" metric-title="Cancer Master"></channel-stats>
