@@ -17,22 +17,49 @@ angular.module('controllers.leaderboardHorizon', [])
 
   })
   .filter('horizon', function($filter) {
-    return function(input) {
-      if (input === "all") {
-        return "All-time <small>Since August 25th 2015</small>";
+    return function(input, link) {
+      // default to not linking
+      if (typeof link === "undefined") {
+        link = false;
       }
-      else if (input === "monthly") {
-        var date  = $filter('date')(new Date(), 'MMMM yyyy');
-
-        return date;
-      }
-      else if (input === "daily") {
-        var date  = $filter('date')(new Date(), 'shortDate');
-
-        return "Today <small>"+date+"</small>";
+      else {
+        link = true;
       }
 
-      return "Hu?!";
+      // transforms an horizon value to a detailed text
+      var to_text = function(horizon) {
+        if (horizon === "all") {
+          var date  = $filter('date')(new Date("2015-08-25"), 'MM/yyyy');
+
+          return "All-time <small>Since "+date+"</small>";
+        }
+        else if (horizon === "monthly") {
+          var date  = $filter('date')(new Date(), 'MMMM yyyy');
+
+          return date;
+        }
+        else if (horizon === "daily") {
+          var date  = $filter('date')(new Date(), 'shortDate');
+
+          return "Today <small>"+date+"</small>";
+        }
+
+        return "Hu?!";
+      }
+
+      // wrap some html into a link to the leaderboards of an horizon
+      var in_link = function(horizon, html) {
+        return '<a href="#/leaderboards/'+horizon+'">'+ html +'</a>';
+      }
+
+      var text = to_text(input);
+
+      if (link) {
+        return in_link(input, text);
+      }
+      else {
+        return text;
+      }
    };
   })
 ;
