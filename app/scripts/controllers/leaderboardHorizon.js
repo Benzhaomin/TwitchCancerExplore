@@ -29,17 +29,17 @@ angular.module('controllers.leaderboardHorizon', [])
       // transforms an horizon value to a detailed text
       var to_text = function(horizon) {
         if (horizon === "all") {
-          var date  = $filter('date')(new Date("2015-08-25"), 'MM/yyyy');
+          var date  = $filter('date')(new Date("2015-08-25"), 'MM/yyyy', 'UTC');
 
           return "All-time <small>Since "+date+"</small>";
         }
         else if (horizon === "monthly") {
-          var date  = $filter('date')(new Date(), 'MMMM yyyy');
+          var date  = $filter('date')(new Date(), 'MMMM yyyy', 'UTC');
 
           return "This month <small>"+date+"</small>";
         }
         else if (horizon === "daily") {
-          var date  = $filter('date')(new Date(), 'shortDate');
+          var date  = $filter('date')(new Date(), 'shortDate', 'UTC');
 
           return "Today <small>"+date+"</small>";
         }
