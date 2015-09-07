@@ -11,15 +11,13 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'd
   .controller('ChannelCtrl', function($scope, $routeParams, api, twitchProfiles) {
     $scope.channelName = $routeParams.channelName;
 
-    $scope.$watch(function() {
-        return twitchProfiles.load($scope.channelName);
-      },
-      function(newValue) {
-        if (newValue) {
-          $scope.profile = newValue;
-        }
-      }
-    );
+    var on_profile_loaded = function(profile) {
+      $scope.profile = profile;
+    };
+
+    // request a profile load, wait for both resolve and notify
+    twitchProfiles.load($scope.channelName, true)
+      .then(on_profile_loaded, null, on_profile_loaded);
 
     api.subscribe("twitchcancer.channel.#"+$scope.channelName, function(json) {
       $scope.stats = json;
