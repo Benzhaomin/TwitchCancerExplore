@@ -8,12 +8,15 @@
  * Controller of the channel view
  */
 angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'directives.quote', 'twitchProfile'])
-  .controller('ChannelCtrl', function($scope, $routeParams, api, twitchProfiles) {
+  .controller('ChannelCtrl', function($scope, $routeParams, $sce, api, twitchProfiles) {
     $scope.channelName = $routeParams.channelName;
 
     var on_profile_loaded = function(profile) {
       $scope.profile = profile;
+      $scope.chat_url = $sce.trustAsResourceUrl("http://www.twitch.tv/"+profile+"/chat");
     };
+
+    $scope.showChat = false;
 
     // request a profile load, wait for both resolve and notify
     twitchProfiles.load($scope.channelName, true)
