@@ -53,4 +53,8 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .config(function ($compileProvider, configuration) {
+    $compileProvider.debugInfoEnabled(configuration.debug === 'true');
+  })
+;
