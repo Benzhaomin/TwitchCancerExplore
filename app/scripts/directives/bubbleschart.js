@@ -7,8 +7,8 @@
  * # BubblesChart
  * Directive used to render data as a bubbles chart
  */
-angular.module('directives.bubbleschart', ['twitchProfile'])
-  .directive('bubblesChart', function(twitchProfiles) {
+angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
+  .directive('bubblesChart', function(Bubble) {
     return {
       restrict: 'E',
       replace: true,
@@ -16,7 +16,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
       link: function (scope, element) {
         var diameter = 950;
 
-        var bubble = d3.layout.pack()
+        var bubble_pack = d3.layout.pack()
           .sort(null)
           .size([diameter, diameter])
           .padding(1.5)
@@ -27,8 +27,15 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
         // never updated yet
         var last_update = new Date(1970);
 
-        // store loaded profiles to save on back and forth with the twitchProfile service
-        var profileCache = {};
+        // cache bubbles data
+        scope.bubbles = {};
+
+        scope.bubble = function(d) {
+          if (d.channel in scope.bubbles) {
+            return scope.bubbles[d.channel];
+          }
+          return null;
+        };
 
         // add a [top15 - top100] button
         var showAll = false;
@@ -185,31 +192,27 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             data = data.slice(0, 15);
           }
 
-          // prepare data for display
+          // create/update bubbles with that new data
           data = data.map(function(d, i) {
+            var bubble;
 
-            var profile;
+            d.channel = d.channel.replace("#", "");
 
-            // try to cache new profiles
-            if (!(d.channel in profileCache)) {
+            // create new bubbles
+            if (!scope.bubble(d)) {
+              bubble = new Bubble(d.channel);
 
-              profile = twitchProfiles.load(d.channel);
-
-              // the loader may return best-effort values, don't cache those
-              if ('cachedDate' in profile) {
-                profileCache[d.channel] = profile;
-              }
+              // store that bubble
+              scope.bubbles[d.channel] = bubble;
             }
+            // re-use existing bubbles
             else {
-              profile = profileCache[d.channel];
+              bubble = scope.bubble(d);
             }
 
-            // enhance data we got from the API with profile details
-            d.rank = (i+1);
-            d.profile_url = window.location + "channel/"+d.channel.replace("#", "");
-            d.display_name = profile.display_name;
-            d.logo = profile.logo;
-            d.thumbnail = profile.thumbnail;
+            // update bubbles data
+            bubble.datum = d[scope.field];
+            bubble.rank = i+1;
 
             return d;
           });
@@ -217,7 +220,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // update data nodes
           var node = chart.selectAll("g")
             .data(
-              bubble.nodes({'children':data})
+              bubble_pack.nodes({'children':data})
                 .filter(function(d) { return !d.children; }),
               function(d) { return d.channel; }
             );
@@ -228,7 +231,13 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // node enter, one svg group per node, translated and scaled based on d.value
           var nodeEnter = node.enter()
             .append("g")
-            .attr("clip-path", "url(#roundPath)");
+            .attr("clip-path", "url(#roundPath)")
+            .attr("id", function(d) {
+                return d.channel;
+            })
+            .each(function(d) {
+              scope.bubble(d).g = d3.select(this);
+            });
 
           // node entering in the very first cycle appear from the center
           if (firstCycle) {
@@ -248,22 +257,28 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
 
           var nodeEnterA = nodeEnter.append("a")
             .attr("xlink:href", function(d) {
-              return d.profile_url;
+              return scope.bubble(d).profile.profile_url;
             })
             .attr("style", "text-decoration: none;")
             .on('mouseover', function(d) {
               var _this = d3.select(this);
+              var bubble = scope.bubble(d);
 
-              _this.attr("data-hover", true);
-              showNodeValue(_this).text(d[scope.field]);
-              showNodeChannel(_this).text(d.display_name);
+              if (bubble.rank > 5) {
+                _this.attr("data-hover", true);
+                showNodeValue(_this).text(bubble.datum);
+                showNodeChannel(_this).text(bubble.profile.display_name);
+              }
             })
-            .on('mouseout', function() {
+            .on('mouseout', function(d) {
               var _this = d3.select(this);
+              var bubble = scope.bubble(d);
 
-              _this.attr("data-hover", false);
-              hideNodeValue(_this, false);
-              hideNodeChannel(_this, false);
+              if (bubble.rank > 5) {
+                _this.attr("data-hover", false);
+                hideNodeValue(_this, bubble.rank > 5);
+                hideNodeChannel(_this, bubble.rank > 5);
+              }
             });
 
           // plain color background
@@ -285,7 +300,7 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
           // node update, without transition
           node
             .attr("class", function(d) {
-              return "rank-"+d.rank;
+              return "rank-"+scope.bubble(d).rank;
             });
 
           // node position update, with transition
@@ -301,9 +316,10 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
             var rect = _this.select("rect");
             var image = _this.select("image");
             var a = _this.select("a");
+            var bubble = scope.bubble(d);
 
             // use a thumbnail after rank 15
-            var src = (i <= 15 ? d.logo : d.thumbnail);
+            var src = (i <= 15 ? bubble.profile.logo :bubble.profile.thumbnail);
 
             if (image.attr("xlink:href") !== src) {
               image.attr("xlink:href", src);
@@ -333,11 +349,11 @@ angular.module('directives.bubbleschart', ['twitchProfile'])
               showNodeValue(a);
 
               // add the channel's name, this one never changes
-              showNodeChannel(a).text(d.display_name);
+              showNodeChannel(a).text(bubble.profile.display_name);
             }
 
             // update the value with the current d.value
-            a.select('text.value').text(d[scope.field]);
+            a.select('text.value').text(bubble.datum);
           });
 
           // node exit
