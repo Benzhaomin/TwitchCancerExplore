@@ -1,6 +1,6 @@
 {
   "name": "TwitchCancer",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "location": "https://github.com/Benzhaomin/TwitchCancerExplore",
   "licence": "GPL3",
   "dependencies": {
