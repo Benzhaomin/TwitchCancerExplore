@@ -49,6 +49,7 @@
               <li ng-class="{ active: isActive('/') }"><a href="#/">Bubbles</a></li>
               <li ng-class="{ active: (isActive('/leaderboards/*') || isActive('/leaderboard/*')) }"><a ui-sref="leaderboards" ng-href="#/leaderboards/daily">Leaderboards</a></li>
               <!--<li><a ng-href="#/channels">Channels</a></li>-->
+              <li ng-class="{ active: isActive('/cure') }"><a ui-sref="about" ng-href="#/cure">Cure</a></li>
               <li ng-class="{ active: isActive('/about') }"><a ui-sref="about" ng-href="#/about">About</a></li>
             </ul>
 
@@ -87,11 +88,15 @@
     <footer class="footer">
       <div class="container">
         <p class="legal">
-            This is an independent site not run by Twitch. Stream logos are the property of their respective owners.
+            This website is totally independent from Twitch. Stream logos are the property of their respective owners.
         </p>
 
         <p>
-          <a href="https://github.com/Benzhaomin/TwitchCancerExplore" target="_blank">Source code</a>. Friend: <a href="https://addons.mozilla.org/en-US/firefox/addon/twitch-no-cancerino/?src=twitchcancerexplore">Twitch No Cancerino</a>, cure chat cancer in Firefox.
+            At least one quote is less than 100% real and at least one quote is 100% real.
+        </p>
+
+        <p>
+          <a href="https://github.com/Benzhaomin/TwitchCancerExplore" target="_blank">Source code</a> for this website and all its tools, all free software, have fun with it.
         </p>
       </div>
     </div>
@@ -125,6 +130,7 @@
     <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/channel.js"></script>
+    <script src="scripts/controllers/cure.js"></script>
     <script src="scripts/controllers/leaderboard.js"></script>
     <script src="scripts/controllers/leaderboards.js"></script>
     <script src="scripts/controllers/leaderboardHorizon.js"></script>

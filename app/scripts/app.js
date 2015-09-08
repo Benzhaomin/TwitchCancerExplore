@@ -21,6 +21,7 @@ angular
     'controllers.leaderboardHorizon',
     'controllers.channel',
     'controllers.header',
+    'controllers.cure',
     'services.config'
   ])
   .config(function ($routeProvider) {
@@ -34,6 +35,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/cure', {
+        templateUrl: 'views/cure.html',
+        controller: 'CureCtrl',
+        controllerAs: 'cure'
       })
       .when('/leaderboards/:leaderboardHorizon', {
         templateUrl: 'views/leaderboards.html',

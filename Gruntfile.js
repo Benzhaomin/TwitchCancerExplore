@@ -473,6 +473,7 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/index.html',
                 '<%= yeoman.app %>/views/about.html',
                 '<%= yeoman.app %>/views/channel.html',
+                '<%= yeoman.app %>/views/cure.html',
                 '<%= yeoman.app %>/views/leaderboard.html',
                 '<%= yeoman.app %>/views/leaderboards.html',
                 '<%= yeoman.app %>/views/twitch_profile.html'

@@ -2,7 +2,7 @@
 
 Angular website to display chat cancer data coming from [TwitchCancer](https://github.com/Benzhaomin/TwitchCancer).
 
-Live (beta) instance at http://cancer.wainei.net.
+Live (beta) instance at http://cancerino.info.
 
 ## Build & development
 
