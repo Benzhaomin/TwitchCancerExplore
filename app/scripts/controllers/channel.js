@@ -13,6 +13,8 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'd
 
     var on_profile_loaded = function(profile) {
       $scope.profile = profile;
+
+      // Twitch doesn't support https here :(
       $scope.chat_url = $sce.trustAsResourceUrl("http://www.twitch.tv/"+profile+"/chat");
     };
 

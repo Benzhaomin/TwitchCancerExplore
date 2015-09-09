@@ -18,7 +18,7 @@ angular
     // create the profiles collection on first load
     $localStorage.profiles = $localStorage.profiles || {};
 
-    var _base_picture_url =  'http://static-cdn.jtvnw.net/jtv_user_pictures/';
+    var _base_picture_url =  'https://static-cdn.jtvnw.net/jtv_user_pictures/';
     var _default_logo = _base_picture_url +'xarth/404_user_300x300.png';
 
     // holds promises while profile are loading
@@ -80,6 +80,10 @@ angular
         // only store the minimum we need
         profile.display_name = response.data.display_name;
         profile.logo = response.data.logo || _default_logo;
+
+        // force https
+        profile.logo = profile.logo.replace("http://", "https://");
+
         profile.thumbnail = _thumbnail_url(profile.logo);
         profile.url = response.data.url;
         profile.followers = response.data.followers;
