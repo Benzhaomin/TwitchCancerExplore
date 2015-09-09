@@ -13,6 +13,22 @@ Live (beta) instance at http://cancerino.info.
 - `grunt serve` to preview
 - `grunt` to build
 
+## Quotes
+
+Quotes (mostly fake) can be contextually displayed around the website. Simply put
+a list of quotes inside `/quotes.json`, following this format:
+
+```
+{
+  "quote": "text",
+  "author": "text",
+  "channel": "channel page or nothing to disable",
+  "tags": ["contextual", "tags"]
+}
+```
+
+The list of quotes used by http://cancerino.info is at https://gist.github.com/Benzhaomin/253fa3ee8ac3da029bce
+
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
