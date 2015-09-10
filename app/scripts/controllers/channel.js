@@ -14,11 +14,12 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'd
     var on_profile_loaded = function(profile) {
       $scope.profile = profile;
 
-      // Twitch doesn't support https here :(
-      $scope.chat_url = $sce.trustAsResourceUrl("http://www.twitch.tv/"+profile+"/chat");
+      // Disabled until Twitch is available over https
+      //$scope.chat_url = $sce.trustAsResourceUrl("http://www.twitch.tv/"+profile+"/chat");
     };
 
-    $scope.showChat = false;
+    // Disabled until Twitch is available over https
+    //$scope.showChat = false;
 
     // request a profile load, wait for both resolve and notify
     twitchProfiles.load($scope.channelName, true)
