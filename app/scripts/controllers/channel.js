@@ -9,7 +9,7 @@
  */
 angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'directives.quote', 'twitchProfile'])
   .controller('ChannelCtrl', function($scope, $routeParams, $sce, api, twitchProfiles) {
-    $scope.channelName = $routeParams.channelName;
+    $scope.channelName = $routeParams.channelName.toLowerCase();
 
     var on_profile_loaded = function(profile) {
       $scope.profile = profile;
