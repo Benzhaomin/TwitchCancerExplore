@@ -1,7 +1,7 @@
 {
   "name": "twitchcancer",
-  "version": "0.4.2",
-  "homepage": "http://cancerino.info",
+  "version": "1.0.0",
+  "homepage": "https://cancerino.info",
   "repository": {
     "type": "git",
     "url": "https://github.com/Benzhaomin/TwitchCancerExplore.git"
