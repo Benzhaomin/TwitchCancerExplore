@@ -8,41 +8,41 @@
  * Controller of the leaderboard view
  */
 angular.module('controllers.leaderboard', ['directives.quote', 'api.websocket'])
-  .controller('LeaderboardCtrl', function($scope, $routeParams, api) {
+  .controller('LeaderboardCtrl', function($scope, $routeParams, $sce, api) {
     $scope.leaderboardName = $routeParams.leaderboardName;
     $scope.leaderboardHorizon = $routeParams.leaderboardHorizon;
 
     var leaderboards = {
       'cancer.minute': {
-        'title': "Cancer points in a minute",
+        'title': "Cancer Points <small>in a minute</small>",
         'decimals': 0,
       },
       'cancer.total': {
-        'title': "Cancer points in total",
+        'title': "Cancer Points <small>in total</small>",
         'decimals': 0
       },
       'cancer.average': {
-        'title': "Cancer points on average",
+        'title': "Cancer Points <small>on average</small>",
         'decimals': 0
       },
       'messages.minute': {
-        'title': "Message count in a minute",
+        'title': "Message Count <small>in a minute</small>",
         'decimals': 0
       },
       'messages.total': {
-        'title': "Message count in total",
+        'title': "Message Count <small>in total</small>",
         'decimals': 0
       },
       'messages.average': {
-        'title': "Message count on average",
+        'title': "Message Count <small>on average</small>",
         'decimals': 0
       },
       'cpm.minute':  {
-        'title': "Cancer per message in a minute",
+        'title': "Cancer Per Message <small>in a minute</small>",
         'decimals': 2
       },
       'cpm.total':  {
-        'title': "Cancer per message in total",
+        'title': "Cancer Per Message <small>in total</small>",
         'decimals': 2
       }
     }

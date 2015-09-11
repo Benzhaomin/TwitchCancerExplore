@@ -14,7 +14,7 @@
 <quote tags="['leaderboard', leaderboardHorizon]"></quote>
 
 <section id="full-leaderboard">
-  <h2><span>{{ title }}</span></h2>
+  <h2><span ng-bind-html="title"></span></h2>
 
   <ul class="leaderboard leaderboard-full ">
     <li ng-repeat='record in leaderboard track by record.channel'>
