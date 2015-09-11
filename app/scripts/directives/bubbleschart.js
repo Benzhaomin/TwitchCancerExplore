@@ -295,7 +295,8 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
             .attr("x", -50)
             .attr("y", -50)
             .attr("width", 100)
-            .attr("height", 100);
+            .attr("height", 100)
+            .style("pointer-events", "none");
 
           // node update, without transition
           node
