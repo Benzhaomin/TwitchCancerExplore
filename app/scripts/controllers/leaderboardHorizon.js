@@ -17,13 +17,10 @@ angular.module('controllers.leaderboardHorizon', [])
 
   })
   .filter('horizon', function($filter) {
-    return function(input, link) {
+    return function(input, anchor) {
       // default to not linking
-      if (typeof link === "undefined") {
-        link = false;
-      }
-      else {
-        link = true;
+      if (typeof anchor === "undefined") {
+        anchor = false;
       }
 
       // transforms an horizon value to a detailed text
@@ -48,14 +45,14 @@ angular.module('controllers.leaderboardHorizon', [])
       }
 
       // wrap some html into a link to the leaderboards of an horizon
-      var in_link = function(horizon, html) {
-        return '<a href="#/leaderboards/'+horizon+'">'+ html +'</a>';
+      var in_link = function(horizon, html, anchor) {
+        return '<a href="#/leaderboards/'+horizon+'#'+anchor+'">'+ html +'</a>';
       }
 
       var text = to_text(input);
 
-      if (link) {
-        return in_link(input, text);
+      if (anchor) {
+        return in_link(input, text, anchor);
       }
       else {
         return text;

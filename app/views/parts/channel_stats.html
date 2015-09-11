@@ -5,19 +5,19 @@
   <div class="row">
 
     <div class="col-lg-4 col-md-6 col-sm-12">
-      <h2 class="category"><span ng-bind-html="'daily' | horizon: true"></span></h2>
+      <h2 class="category"><span ng-bind-html="'daily' | horizon: metric"></span></h2>
 
       <metric-stats stats="stats.daily" metric="metric" metric-name="metricName"></metric-stats>
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12">
-      <h2 class="category"><span ng-bind-html="'monthly' | horizon: true"></span></h2>
+      <h2 class="category"><span ng-bind-html="'monthly' | horizon: metric"></span></h2>
 
       <metric-stats stats="stats.monthly" metric="metric"  metric-name="metricName"></metric-stats>
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-12">
-      <h2 class="category"><span ng-bind-html="'all' | horizon: true"></span></h2>
+      <h2 class="category"><span ng-bind-html="'all' | horizon: metric"></span></h2>
 
       <metric-stats stats="stats.all" metric="metric" metric-name="metricName"></metric-stats>
     </div>
