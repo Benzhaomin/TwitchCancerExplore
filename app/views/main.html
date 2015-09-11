@@ -7,25 +7,21 @@
 <section id="cancer-champions">
 
   <h1>
-    <span>Cancer King  <small>cancer points during the last 60 seconds</small></span>
+    <span>Cancer King <small>cancer points during the last 60 seconds</small></span>
   </h1>
-
-  <script type="text/ng-template" id="cancer-info-popover.html">
-    <p>
-      <strong>Cancer points</strong> are awarded for each message sent in a chat depending on:
-      <ul>
-        <li>message length</li>
-        <li>caps count</li>
-        <li>caps to lowercase ratio</li>
-        <li>emotes count</li>
-        <li>emotes to text ratio</li>
-        <li>copy-pasta level</li>
-      </ul>
-     </p>
-  </script>
 
   <div class="row">
     <div class="col-lg-12">
+
+      <div class="pull-left">
+        <strong>Cancer points</strong> are based on:
+        <ul>
+          <li>message length</li>
+          <li>caps count and ratio</li>
+          <li>emotes count and ratio</li>
+          <li>copy-pasta level</li>
+        </ul>
+      </div>
       <bubbles-chart chart-data="live" chart-field="cancer"></bubbles-chart>
     </div>
   </div>

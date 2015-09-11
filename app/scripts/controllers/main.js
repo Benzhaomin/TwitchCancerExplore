@@ -17,9 +17,5 @@ angular.module('controllers.main', ['directives.bubbleschart', 'api.websocket'])
     $scope.$on("$destroy", function() {
       api.unsubscribe("twitchcancer.live");
     });
-
-    $scope.cancerPopover = {
-      templateUrl: 'cancer-info-popover.html',
-    };
   })
 ;

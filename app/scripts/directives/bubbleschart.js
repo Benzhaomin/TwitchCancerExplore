@@ -42,7 +42,7 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
 
         d3.select(element[0])
           .append("button")
-          .attr("class", "btn btn-danger pull-left man-mode")
+          .attr("class", "btn btn-danger pull-right man-mode")
           .attr("title", "Show all streams, stronk cpu pls")
           .attr("data-toggle", "button")
           .text("Man mode")
