@@ -89,6 +89,9 @@ ul.leaderboard {
       color: white;
       background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     }
+    &:hover .rank {
+      display: block;
+    }
     h4 {
       text-align: left;
       box-sizing: border-box;
@@ -112,22 +115,14 @@ ul.leaderboard {
       position: absolute;
       top: 0px;
       right: 0px;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
       font-size: 12px;
       text-align: center;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
+      color: #ddd;
+      background: #262626;
       display: none;
-    }
-  }
-
-  &.leaderboard-full {
-    li {
-      div.rank {
-        display: block;
-      }
     }
   }
 

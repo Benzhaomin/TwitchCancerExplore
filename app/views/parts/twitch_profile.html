@@ -7,5 +7,5 @@
 
   <img ng-src="{{ (rank > 3 ? profile.thumbnail : profile.logo) }}"/>
 
-  <div class="rank">{{ rank }}</div>
+  <div class="rank">{{ rank | ordinal }}</div>
 </a>
