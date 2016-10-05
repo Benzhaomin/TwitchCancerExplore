@@ -73,7 +73,7 @@ angular
       // we will be loading this channel in a second
       _loading[channel] = deferred.promise;
 
-      $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel+'?callback=JSON_CALLBACK').then(function(response) {
+      $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel+'?callback=JSON_CALLBACK&client_id='+configuration.clientid).then(function(response) {
 
         var profile = $localStorage.profiles[channel];
 

@@ -36,7 +36,7 @@ Running `grunt test` will run the unit tests with karma.
 # License
 
 > TwitchCancerExplore, an Angular website to display chat cancer data coming from TwitchCancer.
-> Copyright (C) 2015 Benjamin Maisonnas
+> Copyright (C) 2016 Benjamin Maisonnas
 
 > This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3 as published by
