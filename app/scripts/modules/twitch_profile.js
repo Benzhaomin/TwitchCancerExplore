@@ -85,8 +85,8 @@ angular
         }
       }).then(function(response) {
         var channel_data = null;
-        for (i=0; i < response.data.channels.length; i++) {
-          if (response.data.channels[i] === channel) {
+        for (var i=0; i < response.data.channels.length; i++) {
+          if (response.data.channels[i].name === channel) {
             channel_data = response.data.channels[i];
             break;
           }
