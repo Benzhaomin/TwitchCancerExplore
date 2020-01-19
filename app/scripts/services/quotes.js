@@ -14,7 +14,7 @@ angular.module('services.quotes', [])
       return $http.get('/quotes.json', {'cache': true}).
         then(function(response) {
           return response.data;
-        }, function(response) {
+        }, function() {
           return [];
         });
     };

@@ -81,14 +81,13 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
           .attr("r", 52);
 
         // add a (hidden) download link
-        var download = d3.select(element[0])
+        d3.select(element[0])
           .append("a")
           .attr("class", "pull-right")
           .style("margin-top", "-100px")
           .style("color", "white")
           .text("Download")
           .on("mouseover", function() {
-            var svg_xml = (new XMLSerializer).serializeToString(chart.node());
             var serializer = new XMLSerializer();
             var xmlString = serializer.serializeToString(chart.node());
             var imgData = 'data:image/svg+xml;base64,' + btoa(xmlString);
@@ -108,12 +107,13 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
               .attr("fill", "white")
               .attr("text-anchor", "middle")
               .attr("dy", "1em")
-              .attr("style", "font-weight: bold; \
-                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; \
-                font-variant: small-caps; \
-                font-size: 28px; \
-                text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black; \
-                pointer-events: none;");
+              .attr("style", 
+                "font-weight: bold;" +
+                "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;" +
+                "font-variant: small-caps;" +
+                "font-size: 28px;" +
+                "text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;" +
+                "pointer-events: none;");
           }
 
           return text;
@@ -134,12 +134,13 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
               .attr("fill", "white")
               .attr("text-anchor", "middle")
               .attr("dy", "4.2em")
-              .attr("style", "font-weight: bold; \
-                font-variant: small-caps; \
-                font-size: 8.4px; \
-                font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; \
-                text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black; \
-                pointer-events: none;");
+              .attr("style", 
+                "font-weight: bold;" +
+                "font-variant: small-caps;" +
+                "font-size: 8.4px;" +
+                "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;" +
+                "text-shadow: 0 0 1px black, 0 0 3px black, 0 0 4px black;" +
+                "pointer-events: none;");
           }
 
           return text;
@@ -241,7 +242,7 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
 
           // node entering in the very first cycle appear from the center
           if (firstCycle) {
-            nodeEnter.attr("transform", function(d) {
+            nodeEnter.attr("transform", function() {
               return "translate(450, 450) scale(1) ";
             });
           }

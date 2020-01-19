@@ -63,4 +63,10 @@ angular
   .config(function ($compileProvider, configuration) {
     $compileProvider.debugInfoEnabled(configuration.debug === 'true');
   })
+  .config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'self',
+      'https://api.twitch.tv/kraken/**'
+    ]);
+  })
 ;

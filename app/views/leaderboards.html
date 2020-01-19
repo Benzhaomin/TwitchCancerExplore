@@ -2,9 +2,9 @@
 <section id="leaderboard-horizon" ng-controller="LeaderboardHorizonController">
   <div class="horizon-switcher">
     <ul>
-      <li ng-class="{ active: isActive('daily') }"><a href="#/leaderboards/daily" title="today's best">Daily</a></li>
-      <li ng-class="{ active: isActive('monthly') }"><a href="#/leaderboards/monthly" title="best of this month">Monthly</a></li>
-      <li ng-class="{ active: isActive('all') }"><a href="#/leaderboards/all"title="all-time best">All-time</a></li>
+      <li ng-class="{ active: isActive('daily') }"><a href="#!/leaderboards/daily" title="today's best">Daily</a></li>
+      <li ng-class="{ active: isActive('monthly') }"><a href="#!/leaderboards/monthly" title="best of this month">Monthly</a></li>
+      <li ng-class="{ active: isActive('all') }"><a href="#!/leaderboards/all"title="all-time best">All-time</a></li>
     </ul>
   </div>
 
@@ -21,7 +21,7 @@
   <div class="row">
     <div class="top10 col-lg-12 total">
       <h3>
-        <a ng-href="#/leaderboard/cancer.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
+        <a ng-href="#!/leaderboard/cancer.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.cancer.total']" decimals="0"></leaderboard>
     </div>
@@ -30,7 +30,7 @@
   <div class="row">
     <div class="top10 col-lg-12 minute">
       <h3 tooltip="in a single minute" tooltip-placement="left">
-        <a ng-href="#/leaderboard/cancer.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
+        <a ng-href="#!/leaderboard/cancer.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.cancer.minute']" decimals="0"></leaderboard>
     </div>
@@ -39,7 +39,7 @@
   <div class="row">
     <div class="top10 col-lg-12 average">
       <h3>
-        <a ng-href="#/leaderboard/cancer.average/{{ leaderboardHorizon }}" title="view the full leaderboard">average</a>
+        <a ng-href="#!/leaderboard/cancer.average/{{ leaderboardHorizon }}" title="view the full leaderboard">average</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.cancer.average']" decimals="0"></leaderboard>
     </div>
@@ -54,7 +54,7 @@
   <div class="row">
     <div class="top10 col-lg-12 total">
       <h3>
-        <a ng-href="#/leaderboard/messages.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
+        <a ng-href="#!/leaderboard/messages.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.messages.total']" decimals="0"></leaderboard>
     </div>
@@ -63,7 +63,7 @@
   <div class="row">
     <div class="top10 col-lg-12 minute">
       <h3 tooltip="in a single minute" tooltip-placement="left">
-        <a ng-href="#/leaderboard/messages.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
+        <a ng-href="#!/leaderboard/messages.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.messages.minute']" decimals="0"></leaderboard>
     </div>
@@ -72,7 +72,7 @@
   <div class="row">
     <div class="top10 col-lg-12 average">
       <h3>
-        <a ng-href="#/leaderboard/messages.average/{{ leaderboardHorizon }}" title="view the full leaderboard">average</a>
+        <a ng-href="#!/leaderboard/messages.average/{{ leaderboardHorizon }}" title="view the full leaderboard">average</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.messages.average']" decimals="0"></leaderboard>
     </div>
@@ -87,7 +87,7 @@
   <div class="row">
     <div class="top10 col-lg-12 total">
       <h3>
-        <a ng-href="#/leaderboard/cpm.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
+        <a ng-href="#!/leaderboard/cpm.total/{{ leaderboardHorizon }}" title="view the full leaderboard">total</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.cpm.total']" decimals="2"></leaderboard>
     </div>
@@ -96,7 +96,7 @@
   <div class="row">
     <div class="top10 col-lg-12 minute">
       <h3 tooltip="in a single minute" tooltip-placement="left">
-        <a ng-href="#/leaderboard/cpm.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
+        <a ng-href="#!/leaderboard/cpm.minute/{{ leaderboardHorizon }}" title="view the full leaderboard">burst</a>
       </h3>
       <leaderboard board-data="leaderboards[leaderboardHorizon+'.cpm.minute']" decimals="2"></leaderboard>
     </div>

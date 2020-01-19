@@ -1,0 +1,19 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  web:
+    container_name: twitchcancer_web
+    build: .
+    image: ${TWITCHCANCER_WWW_IMAGE}
+    restart: always
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:${CANCERINO_FQDN}
+      - traefik.docker.network=web
+      - traefik.port=80

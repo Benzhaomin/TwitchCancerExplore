@@ -19,4 +19,3 @@ angular.module('controllers.leaderboards', ['directives.leaderboard', 'directive
       api.unsubscribe("twitchcancer.leaderboards."+$scope.leaderboardHorizon);
     });
   });
-;

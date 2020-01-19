@@ -17,8 +17,7 @@ angular.module('directives.quote', ['services.quotes'])
       scope: {
         tags: '='
       },
-      link: function(scope, element, tags) {
-
+      link: function(scope) {
         quotes.random(scope.tags).then(function(data) {
           scope.quote = data.quote;
           scope.author = data.author;

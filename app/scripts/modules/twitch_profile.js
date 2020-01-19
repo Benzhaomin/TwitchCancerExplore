@@ -73,38 +73,55 @@ angular
       // we will be loading this channel in a second
       _loading[channel] = deferred.promise;
 
-      $http.jsonp('https://api.twitch.tv/kraken/channels/'+channel+'?callback=JSON_CALLBACK&client_id='+configuration.clientid).then(function(response) {
+      $http({
+        method: 'GET',
+        url: 'https://api.twitch.tv/kraken/search/channels',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': configuration.clientid
+        },
+        params: {
+          query: channel
+        }
+      }).then(function(response) {
+        var channel_data = null;
+        for (var i=0; i < response.data.channels.length; i++) {
+          if (response.data.channels[i].name === channel) {
+            channel_data = response.data.channels[i];
+            break;
+          }
+        }
+
+        if (!channel_data) {
+          delete _loading[channel];
+          delete $localStorage.profiles[channel];
+          //console.error('failed to find channel ' + channel);
+          //deferred.reject('failed to find channel ' + channel);
+          return;
+        }
 
         var profile = $localStorage.profiles[channel];
 
-        // only store the minimum we need
-        profile.display_name = response.data.display_name;
-        profile.logo = response.data.logo || _default_logo;
-
-        // force https
+        // fill the local profile up
+        profile.channel_id = channel_data._id;
+        profile.display_name = channel_data.display_name;
+        profile.description = channel_data.description;
+        profile.status = channel_data.status;
+        profile.logo = channel_data.logo || _default_logo;
         profile.logo = profile.logo.replace("http://", "https://");
-
         profile.thumbnail = _thumbnail_url(profile.logo);
-        profile.url = response.data.url;
-        profile.followers = response.data.followers;
-        profile.game = response.data.game;
+        profile.url = channel_data.url;
+        profile.followers = channel_data.followers;
+        profile.game = channel_data.game;
         profile.cachedAt = Date();
 
-        //console.log('[jsonp] finished loading ' + channel);
-
-        // this channel is no longer loading
-        delete _loading[channel];
-
+        //console.log('finished loading ' + channel);
         deferred.resolve(profile);
-
-      }, function(err) {
-        // this channel is no longer loading
+      }, function() {
         delete _loading[channel];
-
         delete $localStorage.profiles[channel];
-        //console.log('[jsonp] failed loading ' + channel + ' ' + err);
-
-        deferred.reject('[jsonp] failed loading ' + channel + ' ' + err);
+        //console.error('failed to find channel ' + channel);
+        //deferred.reject('failed to find channel ' + channel);
       });
 
       return deferred.promise;
