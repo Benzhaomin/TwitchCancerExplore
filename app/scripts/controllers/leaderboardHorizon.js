@@ -8,7 +8,7 @@
  * Controller of the header view
  */
 angular.module('controllers.leaderboardHorizon', [])
-  .controller('LeaderboardHorizonController', function($scope, $routeParams, $location, $window) {
+  .controller('LeaderboardHorizonController', function($scope, $routeParams) {
 
     // returns true when an horizon is active
     $scope.isActive = function(horizon) {
@@ -25,29 +25,28 @@ angular.module('controllers.leaderboardHorizon', [])
 
       // transforms an horizon value to a detailed text
       var to_text = function(horizon) {
-        if (horizon === "all") {
-          var date  = $filter('date')(new Date("2015-08-25"), 'MM/yyyy', 'UTC');
+        var date = null;
 
+        if (horizon === "all") {
+          date  = $filter('date')(new Date("2015-08-25"), 'MM/yyyy', 'UTC');
           return "All-time <small>Since "+date+"</small>";
         }
         else if (horizon === "monthly") {
-          var date  = $filter('date')(new Date(), 'MMMM yyyy', 'UTC');
-
+          date  = $filter('date')(new Date(), 'MMMM yyyy', 'UTC');
           return "This month <small>"+date+"</small>";
         }
         else if (horizon === "daily") {
-          var date  = $filter('date')(new Date(), 'shortDate', 'UTC');
-
+          date  = $filter('date')(new Date(), 'shortDate', 'UTC');
           return "Today <small>"+date+"</small>";
         }
 
         return "Hu?!";
-      }
+      };
 
       // wrap some html into a link to the leaderboards of an horizon
       var in_link = function(horizon, html, anchor) {
-        return '<a href="#/leaderboards/'+horizon+'#'+anchor+'">'+ html +'</a>';
-      }
+        return '<a href="#!/leaderboards/'+horizon+'#'+anchor+'">'+ html +'</a>';
+      };
 
       var text = to_text(input);
 

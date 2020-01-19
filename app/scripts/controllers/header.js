@@ -18,7 +18,7 @@ angular.module('controllers.header', ['api.websocket'])
       }
       // match an exact path
       else {
-        return viewLocation === $location.path()
+        return viewLocation === $location.path();
       }
     };
 
@@ -34,7 +34,7 @@ angular.module('controllers.header', ['api.websocket'])
 
     // just go to whatever is in the search field
     $scope.submit = function() {
-      $window.location.href = '#/channel/'+$scope.searched;
+      $window.location.href = '#!/channel/'+$scope.searched;
     };
   })
 ;

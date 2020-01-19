@@ -82,7 +82,7 @@ angular.module('api.websocket', [])
         // the promise will resolve when we get an answer for this request
         requests[topic] = function(data) {
           defer.resolve(data);
-        }
+        };
 
         // send the request now
         socket.send('{"request": "'+topic+'", "data": "'+data+'"}');

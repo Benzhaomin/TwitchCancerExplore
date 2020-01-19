@@ -41,24 +41,24 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/" title="Twitch Chat Cancer Monitor">Twitch Cancer</a>
+            <a class="navbar-brand" href="#!/" title="Twitch Chat Cancer Monitor">Twitch Cancer</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li ng-class="{ active: isActive('/') }"><a href="#/">Bubbles</a></li>
-              <li ng-class="{ active: (isActive('/leaderboards/*') || isActive('/leaderboard/*') || isActive('/channel/*')) }"><a ui-sref="leaderboards" ng-href="#/leaderboards/daily">Leaderboards</a></li>
-              <!--<li><a ng-href="#/channels">Channels</a></li>-->
-              <li ng-class="{ active: isActive('/cure') }"><a ui-sref="about" ng-href="#/cure">Cure</a></li>
-              <li ng-class="{ active: isActive('/about') }"><a ui-sref="about" ng-href="#/about">About</a></li>
+              <li ng-class="{ active: isActive('/') }"><a href="#!/">Bubbles</a></li>
+              <li ng-class="{ active: (isActive('/leaderboards/*') || isActive('/leaderboard/*') || isActive('/channel/*')) }"><a ui-sref="leaderboards" ng-href="#!/leaderboards/daily">Leaderboards</a></li>
+              <!--<li><a ng-href="#!/channels">Channels</a></li>-->
+              <li ng-class="{ active: isActive('/cure') }"><a ui-sref="about" ng-href="#!/cure">Cure</a></li>
+              <li ng-class="{ active: isActive('/about') }"><a ui-sref="about" ng-href="#!/about">About</a></li>
             </ul>
 
             <div class="col-sm-3 col-md-3 pull-right">
               <form class="navbar-form" role="search" ng-submit="submit()">
                 <div class="input-group">
                   <script type="text/ng-template" id="searchTemplate.html">
-                    <a ng-href="#/channel/{{ match.model }}">
+                    <a ng-href="#!/channel/{{ match.model }}">
                        {{ match.model }}
                     </a>
                   </script>

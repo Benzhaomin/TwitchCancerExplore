@@ -45,7 +45,7 @@ angular.module('controllers.leaderboard', ['directives.quote', 'api.websocket'])
         'title': "Cancer Per Message <small>in total</small>",
         'decimals': 2
       }
-    }
+    };
 
     $scope.title = leaderboards[$scope.leaderboardName].title;
     $scope.decimals = leaderboards[$scope.leaderboardName].decimals;

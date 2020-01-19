@@ -15,7 +15,7 @@ angular.module('controllers.channel', ['countTo', 'ordinal', 'api.websocket', 'd
       $scope.profile = profile;
 
       // Disabled until Twitch is available over https
-      //$scope.chat_url = $sce.trustAsResourceUrl("http://www.twitch.tv/"+profile+"/chat");
+      $scope.chat_url = $sce.trustAsResourceUrl("https://www.twitch.tv/embed/"+profile.name+"/chat");
     };
 
     // Disabled until Twitch is available over https

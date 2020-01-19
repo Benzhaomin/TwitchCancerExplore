@@ -124,7 +124,10 @@ aside.chat {
   top: 100px;
   right: 10px;
   resize: horizontal;
+  min-height: 600px;
+  min-width: 400px;
   overflow: auto;
   padding: 10px;
   background: #262626;
+  z-index: 1000;
 }
