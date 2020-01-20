@@ -39,6 +39,7 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
 
         // add a [top15 - top100] button
         var showAll = false;
+        var updateChart = null;
 
         d3.select(element[0])
           .append("button")
@@ -153,18 +154,15 @@ angular.module('directives.bubbleschart', ['directives.bubblechart.bubble'])
         };
 
         // will update all bubbles based on scope.data
-        var updateChart = function(noDelay) {
+        updateChart = function(noDelay) {
 
           if (typeof scope.data === 'undefined') {
-            //chart.text("Loading...");
+            // Loading...
             return;
           }
-          /*else {
-            chart.text('');
-          }*/
 
-          if (scope.data.len === 0) {
-            chart.text("No data");
+          if (scope.data.length === 0) {
+            // No data => no bubbles to show
             return;
           }
 
