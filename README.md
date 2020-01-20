@@ -6,13 +6,18 @@ Live instance at https://cancerino.info.
 
 ## Build & development
 
-- `git clone git@github.com:Benzhaomin/TwitchCancerExplore.git`
-- `cd TwitchCancerExplore`
-- `npm install`
+### Requirements
+
+- node / npm
+- compass (Ruby gem)
+
+### Commands
+
+- `npm install` to download all modules
 - `grunt serve` to preview a dev version
 - `grunt serve:dist` to preview a prod version
-- `grunt` to build
-- `docker-compose up -d` to serve the full app from an nginx container
+- `grunt` to test and build
+- `docker-compose up -d` to build and then serve the full app from a container
 
 ## Quotes
 

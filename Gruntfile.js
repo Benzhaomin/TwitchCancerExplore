@@ -45,7 +45,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= cfg.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer:server']
+        tasks: ['compass:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -141,32 +141,6 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp'
-    },
-
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['last 1 version']
-      },
-      server: {
-        options: {
-          map: true,
-        },
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -422,7 +396,6 @@ module.exports = function (grunt) {
       'clean:server',
       'replace:development',
       'concurrent:server',
-      'autoprefixer:server',
       'connect:livereload',
       'watch'
     ]);
@@ -432,7 +405,6 @@ module.exports = function (grunt) {
     'jshint',
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
     'connect:test',
   ]);
 
@@ -441,7 +413,6 @@ module.exports = function (grunt) {
     'replace:production',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
     'ngtemplates',
     'concat',
     'ngAnnotate',
