@@ -2,16 +2,17 @@
 
 Angular website to display chat cancer data coming from [TwitchCancer](https://github.com/Benzhaomin/TwitchCancer).
 
-Live (beta) instance at https://cancerino.info.
+Live instance at https://cancerino.info.
 
 ## Build & development
 
 - `git clone git@github.com:Benzhaomin/TwitchCancerExplore.git`
 - `cd TwitchCancerExplore`
 - `npm install`
-- `bower install`
-- `grunt serve` to preview
+- `grunt serve` to preview a dev version
+- `grunt serve:dist` to preview a prod version
 - `grunt` to build
+- `docker-compose up -d` to serve the full app from an nginx container
 
 ## Quotes
 
@@ -28,10 +29,6 @@ a list of quotes inside `/quotes.json`, following this format:
 ```
 
 The list of quotes used by http://cancerino.info is at https://gist.github.com/Benzhaomin/253fa3ee8ac3da029bce
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
 
 # License
 
