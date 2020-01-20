@@ -1,0 +1,9 @@
+tests:
+  stage: test
+  image: node:13-alpine
+  script:
+  - apk --update --no-cache add git openssh-client ruby ruby-ffi
+  - gem install compass
+  - npm_config_unsafe_perm=true npm install -g grunt-cli
+  - npm install
+  - grunt
