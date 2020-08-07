@@ -43,7 +43,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "angular": "^1.7.0",
+    "angular": "^1.8.0",
     "angular-filter-count-to": "github:Benzhaomin/angular-filter-count-to#v0.0.5",
     "angular-ordinal": "*",
     "angular-route": "^1.7.0",
